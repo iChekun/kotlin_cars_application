@@ -1,0 +1,13 @@
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    compile project(":facade")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+}

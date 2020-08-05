@@ -1,0 +1,10 @@
+rootProject.name = 'server'
+include 'dataaccess'
+include 'service'
+include 'web'
+include 'web'
+include 'car_trade_api'
+include 'entity_model'
+include 'repository'
+include 'facade'
+
