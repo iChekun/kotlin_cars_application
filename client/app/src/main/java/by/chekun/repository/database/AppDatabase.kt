@@ -6,7 +6,7 @@ import by.chekun.repository.database.dao.CarDao
 import by.chekun.repository.database.entity.Car
 
 
-@Database(entities = [(Car::class)], version = 2)
+@Database(entities = [(Car::class)], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun carDao(): CarDao

@@ -17,4 +17,15 @@
     <string name="btn_text_delete_user">Delete User</string>
     <string name="text_file_select">Select File to upload</string>
     <string name="btn_text_select_file">Select file</string>
+    <string name="txt_transmission_type">Transmission type</string>
+    <string name="txt_wheel_drive_type">Wheel drive type</string>
+    <string name="txt_body_type">Body type</string>
+    <string name="txt_engine_capacity">Engine capacity</string>
+    <string name="txt_fuel_type">Fuel type</string>
+    <string name="txt_mileage">Mileage</string>
+    <string name="txt_release_year">Release year</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

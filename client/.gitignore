@@ -7,3 +7,5 @@
 /captures
 .externalNativeBuild
 /app/src/main/res/raw/okta_app_auth_config.json
+/gradlew
+/gradlew.bat

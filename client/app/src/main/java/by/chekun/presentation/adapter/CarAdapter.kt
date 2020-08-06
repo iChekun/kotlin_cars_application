@@ -3,13 +3,11 @@ package by.chekun.presentation.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import by.chekun.R
+import by.chekun.databinding.CarItemBinding
 import by.chekun.presentation.base.BaseAdapter
-
 import by.chekun.presentation.item.CarItemClickListener
 import by.chekun.presentation.item.CarViewHolder
 import by.chekun.repository.database.entity.Car
-
 
 
 class CarAdapter(private val context: Context, private val cars: List<Car>, private val listener: CarItemClickListener<Car>) :
@@ -21,7 +19,9 @@ class CarAdapter(private val context: Context, private val cars: List<Car>, priv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
-        return CarViewHolder(LayoutInflater.from(context).inflate(R.layout.item_car, parent, false))
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+        val binding: CarItemBinding = CarItemBinding.inflate(inflater, parent, false)
+        return CarViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {

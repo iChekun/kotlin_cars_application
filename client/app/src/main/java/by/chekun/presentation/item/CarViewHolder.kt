@@ -2,11 +2,11 @@ package by.chekun.presentation.item
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import by.chekun.databinding.CarItemBinding
 import by.chekun.repository.database.entity.Car
-import kotlinx.android.synthetic.main.item_car.view.*
 
 
-class CarViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+class CarViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     private var car: Car? = null
     private var listener: CarItemClickListener<Car>? = null
@@ -19,11 +19,7 @@ class CarViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setupItem() {
-        view.txtRvId.text = car?.id.toString()
-        view.txtName.text = car?.model
-        view.txtSurname.text = car?.price.toString()
-        view.txtFathername.text = car?.releaseYear.toString()
-        view.txtBrandName.text = car?.brand?.title
-        view.setOnClickListener(itemDetail)
+        binding.car = car
+        binding.root.setOnClickListener(itemDetail)
     }
 }

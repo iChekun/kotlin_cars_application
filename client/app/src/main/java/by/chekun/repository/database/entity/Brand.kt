@@ -9,6 +9,6 @@ data class Brand(
 //        val id: Long,
 
         @SerializedName("title")
-        val title: String
+        var title: String
 
 )

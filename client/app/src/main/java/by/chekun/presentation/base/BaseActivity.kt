@@ -10,17 +10,26 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import by.chekun.App
 import by.chekun.R
 import by.chekun.di.component.ViewModelComponent
 import by.chekun.utils.hideKeyboardEx
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 import java.util.ArrayList
@@ -34,19 +43,13 @@ abstract class BaseActivity : AppCompatActivity() {
     protected var requestCode: Int? = null
     private var mToolbar: Toolbar? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createDaggerDependencies()
+
     }
 
-    protected fun initializeToolbar(toolbar: Toolbar) {
-        mToolbar = toolbar
-        mToolbar?.apply {
-            setNavigationOnClickListener { onBackPressed() }
-            setActionBar(this)
-            actionBar?.title = ""
-        }
-    }
 
     override fun startActivity(intent: Intent) {
         super.startActivity(intent)

@@ -1,59 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".presentation.activities.detail.DetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data class="CarDetailBinding">
+
+        <variable
+            name="car"
+            type="by.chekun.repository.database.entity.Car" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/indentation_5"
+        android:paddingTop="@dimen/indentation_5"
+        android:paddingRight="@dimen/indentation_5"
+        android:paddingBottom="@dimen/indentation_5"
+        app:cardElevation="@dimen/indentation_5"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/txtDetailId"
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textAlignment="center"
-                android:textSize="@dimen/txt_size_100" />
+                android:layout_height="191dp"
+                android:contentDescription="car picture"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bmw_m3_e46" />
 
-        <TextView
-                android:id="@+id/txtDetailSurname"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/indentation_6"
-                android:layout_marginEnd="@dimen/indentation_6"
-                android:text="@string/txt_default_name"
-                android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/txtDetailName"
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:text="@{car.carCardDescription}" />
+
+                <TextView
+                    android:id="@+id/txtModel"
+                    android:layout_width="61dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="@{car.idString}"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtCarInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="Updated 06.08.2020"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/txtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="@{car.priceString}"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/indentation_6"
-                android:layout_marginEnd="@dimen/indentation_6"
-                android:text="@string/txt_default_surname"
-                android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                android:layout_height="331dp">
 
-        <TextView
-                android:id="@+id/txtDetailFathername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/indentation_6"
-                android:layout_marginEnd="@dimen/indentation_6"
-                android:text="@string/txt_default_fathername"
-                android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
 
-        <TextView
-            android:id="@+id/txtDetailBrandName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/txt_brand_name" />
+                    >
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="149dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_release_year" />
 
-</FrameLayout>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.releaseYearString}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_mileage" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.mileageString}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_fuel_type" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.fuelType}" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_engine_capacity" />
+
+                    <Space
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.engineCapacityString}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_body_type" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.bodyType}" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_wheel_drive_type" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.wheelDriveType}" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_transmission_type" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{car.transmissionType}" />
+
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

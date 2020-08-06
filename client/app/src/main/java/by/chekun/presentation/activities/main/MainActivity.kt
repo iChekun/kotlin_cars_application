@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import androidx.databinding.DataBindingUtil
 import by.chekun.R
+import by.chekun.databinding.ActivityMainBinding
 import by.chekun.di.component.ViewModelComponent
 import by.chekun.domain.AllCarsViewModel
 import by.chekun.presentation.activities.detail.DetailActivity
@@ -23,11 +25,13 @@ class MainActivity : BaseActivity() {
     var viewModel: AllCarsViewModel? = null
         @Inject set
 
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel?.getAllItems()
-        viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } })
+        viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } } )
     }
 
     private fun initRecyclerView(users: List<Car>) {
@@ -53,11 +57,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
-
     override fun injectDependency(component: ViewModelComponent) {
         component.inject(this)
     }
-
 
     private fun openItemDetail(id: Long) {
         this.startActivity(DetailActivity.newInstance(this, id))
