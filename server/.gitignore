@@ -1,0 +1,10 @@
+/.gradle/
+/.idea/
+/gradle/
+/repository/out/
+/build/
+/entity_model/build/
+/facade/build/
+/build/
+/service/build/
+/web/build/

@@ -16,12 +16,13 @@ class BrandServiceImpl(
     private val brandEntityDtoConverter: BrandEntityDtoConverter,
     private val brandRepository: BrandRepository
 ) : BrandService {
-
+    @Transactional(readOnly = true)
     override fun findAll(): List<BrandDto> {
         val brands: List<Brand> = brandRepository.findAll()
         return brandEntityDtoConverter.toDtoList(brands)
     }
 
+    @Transactional(readOnly = true)
     override fun findById(id: Long): BrandDto {
         val brand: Brand = this.brandRepository.findById(id)
             .orElseThrow { throw ResourceNotFoundException("Brand with id $id not found!") }
@@ -50,6 +51,7 @@ class BrandServiceImpl(
         //TODO
     }
 
+    @Transactional(readOnly = true)
     override fun isPresent(id: Long): Boolean {
         return brandRepository.findById(id).isPresent
     }

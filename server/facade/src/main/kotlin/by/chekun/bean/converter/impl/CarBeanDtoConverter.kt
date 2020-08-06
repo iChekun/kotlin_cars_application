@@ -1,8 +1,8 @@
 package by.chekun.bean.converter.impl
 
-import by.chekun.dto.CarDto
 import by.chekun.bean.CarBean
 import by.chekun.bean.converter.Converter
+import by.chekun.dto.CarDto
 import org.springframework.stereotype.Component
 import java.util.stream.Collectors
 
@@ -12,27 +12,43 @@ class CarBeanDtoConverter(private val brandBeanDtoConverter: BrandBeanDtoConvert
 
 
     override fun toDto(b: CarBean): CarDto {
-        val car = CarDto()
-        car.id = b.id
-        car.model = b.model
-        car.releaseYear = b.releaseYear
-        car.price = b.price
-        car.description = b.description
-        car.brand = brandBeanDtoConverter.toDto(b.brand)
+        val carDto = CarDto()
+        carDto.id = b.id
+        carDto.model = b.model
+        carDto.releaseYear = b.releaseYear
+        carDto.price = b.price
+        carDto.description = b.description
+        carDto.brand = brandBeanDtoConverter.toDto(b.brand)
 
-        return car
+        carDto.generation = b.generation
+        carDto.mileage = b.mileage
+        carDto.bodyType = b.bodyType
+        carDto.transmissionType = b.transmissionType
+        carDto.fuelType = b.fuelType
+        carDto.wheelDriveType = b.wheelDriveType
+        carDto.engineCapacity = b.engineCapacity
+
+        return carDto
     }
 
     override fun toBean(d: CarDto): CarBean {
-        val car = CarBean()
-        car.id = d.id
-        car.model = d.model
-        car.releaseYear = d.releaseYear
-        car.price = d.price
-        car.description = d.description
-        car.brand = brandBeanDtoConverter.toBean(d.brand)
+        val carBean = CarBean()
+        carBean.id = d.id
+        carBean.model = d.model
+        carBean.releaseYear = d.releaseYear
+        carBean.price = d.price
+        carBean.description = d.description
+        carBean.brand = brandBeanDtoConverter.toBean(d.brand)
 
-        return car
+        carBean.generation = d.generation
+        carBean.mileage = d.mileage
+        carBean.bodyType = d.bodyType
+        carBean.transmissionType = d.transmissionType
+        carBean.fuelType = d.fuelType
+        carBean.wheelDriveType = d.wheelDriveType
+        carBean.engineCapacity = d.engineCapacity
+
+        return carBean
     }
 
     override fun toBeanList(eList: List<CarDto>): List<CarBean> {

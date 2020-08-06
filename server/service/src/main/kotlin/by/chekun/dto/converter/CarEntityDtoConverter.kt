@@ -17,6 +17,15 @@ class CarEntityDtoConverter(private val brandEntityDtoConverter: BrandEntityDtoC
         car.description = d.description
         car.brand = brandEntityDtoConverter.toEntity(d.brand)
 
+        car.generation = d.generation
+        car.mileage = d.mileage
+        car.bodyType = d.bodyType
+        car.transmissionType = d.transmissionType
+        car.fuelType = d.fuelType
+        car.wheelDriveType = d.wheelDriveType
+        car.engineCapacity = d.engineCapacity
+        car.picture = d.picture.copyOf()
+
         return car
     }
 
@@ -28,6 +37,15 @@ class CarEntityDtoConverter(private val brandEntityDtoConverter: BrandEntityDtoC
         carDto.price = e.price
         carDto.description = e.description
         carDto.brand = brandEntityDtoConverter.toDto(e.brand)
+
+        carDto.generation = e.generation
+        carDto.mileage = e.mileage
+        carDto.bodyType = e.bodyType
+        carDto.transmissionType = e.transmissionType
+        carDto.fuelType = e.fuelType
+        carDto.wheelDriveType = e.wheelDriveType
+        carDto.engineCapacity = e.engineCapacity
+        carDto.picture = e.picture.copyOf()
 
         return carDto
     }

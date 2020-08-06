@@ -21,7 +21,7 @@ class CarServiceImpl(
     private val brandRepository: BrandRepository
 ) : CarService {
 
-
+    @Transactional(readOnly = true)
     override fun findAll(paging: Paging, searchCriteria: CarSearchCriteria): Page<CarDto> {
 
         val pageable = getPageable(paging, searchCriteria.sortBy, searchCriteria.sortType)
@@ -44,6 +44,7 @@ class CarServiceImpl(
         return PageRequest.of(paging.page, paging.size, sort)
     }
 
+    @Transactional(readOnly = true)
     override fun findById(id: Long): CarDto {
         val car =
             carRepository.findById(id).orElseThrow { throw ResourceNotFoundException("Car with id $id not found!") }
@@ -76,6 +77,7 @@ class CarServiceImpl(
         TODO("Not yet implemented")
     }
 
+    @Transactional(readOnly = true)
     override fun isPresent(id: Long): Boolean {
         return carRepository.findById(id).isPresent
     }

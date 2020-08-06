@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
-import java.util.stream.Collectors
 import javax.validation.Valid
 import javax.validation.constraints.Min
 import javax.validation.constraints.Positive
@@ -45,10 +44,7 @@ class CarController(private val carFacade: CarFacade) {
     ): ResponseEntity<List<CarBean>> {
         val paging = Paging(size, page)
         val searchCriteria = getSearchCriteria(model, releaseYear, minPrice, maxPrice, brandTitle, sortBy, sortType)
-        var cars = carFacade.findAll(paging, searchCriteria)
-//        val list: List<CarWithoutBrand> =
-//            cars.objects.stream().map { e -> CarWithoutBrand(e.id, e.model, e.releaseYear, e.price, e.description) }
-//                .collect(Collectors.toList())
+        val cars = carFacade.findAll(paging, searchCriteria)
 
         return ResponseEntity(
             cars.objects,
@@ -94,6 +90,12 @@ class CarController(private val carFacade: CarFacade) {
         httpHeaders.location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(saved.id).toUri()
         return ResponseEntity(saved, httpHeaders, HttpStatus.CREATED)
+    }
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): ResponseEntity<*>? {
+        carFacade.delete(id)
+        return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
     }
 
 }
