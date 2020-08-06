@@ -9,22 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 
 class AppRepository(private val serverCommunicator: ServerCommunicator, private val mainDatabase: AppDatabase) {
-    /*
-     fun getAll(): Single<List<CarEntity>?> {
-        return serverCommunicator.getAllUsers().flatMap { list ->
-            Single.just(
-                    list.body()?.toList()
-            )
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-    }
 
-    fun getUser(id: Long): Single<CarEntity> {
-        return serverCommunicator.getUser(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-    }
-     */
     fun getAll(): Single<List<Car>>? {
         return serverCommunicator.getAllUsers()
                 .flatMap { list ->

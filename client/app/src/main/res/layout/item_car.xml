@@ -9,7 +9,7 @@
             type="by.chekun.repository.database.entity.Car" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="314dp"
         android:paddingLeft="@dimen/indentation_5"
@@ -62,7 +62,7 @@
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </layout>

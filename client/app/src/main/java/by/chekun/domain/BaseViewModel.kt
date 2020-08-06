@@ -1,7 +1,7 @@
 package by.chekun.domain
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.annotation.StringRes
 import by.chekun.App
 

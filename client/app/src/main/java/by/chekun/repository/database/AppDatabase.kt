@@ -1,7 +1,7 @@
 package by.chekun.repository.database
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import by.chekun.repository.database.dao.CarDao
 import by.chekun.repository.database.entity.Car
 

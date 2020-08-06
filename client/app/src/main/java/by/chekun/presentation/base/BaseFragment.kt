@@ -2,8 +2,8 @@ package by.chekun.presentation.base
 
 import android.app.ActionBar
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.v4.app.Fragment
+import androidx.annotation.DrawableRes
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,7 +13,7 @@ import by.chekun.utils.showSnack
 import by.chekun.utils.showToast
 
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : androidx.fragment.app.Fragment() {
     private val appBar: ActionBar? = activity?.actionBar
     protected fun disableHomeAsUp() = appBar?.setDisplayHomeAsUpEnabled(false)
 

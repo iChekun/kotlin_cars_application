@@ -1,5 +1,6 @@
 package by.chekun.presentation.base
 
+
 import android.Manifest
 import android.annotation.TargetApi
 import android.content.Intent
@@ -10,29 +11,18 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import android.support.design.widget.NavigationView
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toolbar
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupWithNavController
 import by.chekun.App
 import by.chekun.R
 import by.chekun.di.component.ViewModelComponent
 import by.chekun.utils.hideKeyboardEx
-import kotlinx.android.synthetic.main.activity_main.*
-
-
-import java.util.ArrayList
+import java.util.*
 
 abstract class BaseActivity : AppCompatActivity() {
     protected open val PERMISSION_REQUEST = 5
@@ -69,21 +59,21 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun findViewAt(viewGroup: ViewGroup, x: Int, y: Int): View? {
         (0 until viewGroup.childCount)
-            .map { viewGroup.getChildAt(it) }
-            .forEach {
-                when (it) {
-                    is ViewGroup -> {
-                        val foundView = findViewAt(it, x, y)
-                        if (foundView?.isShown!!) return foundView
-                    }
-                    else -> {
-                        val location = IntArray(2)
-                        it.getLocationOnScreen(location)
-                        val rect = Rect(location[0], location[1], location[0] + it.width, location[1] + it.height)
-                        if (rect.contains(x, y)) return it
+                .map { viewGroup.getChildAt(it) }
+                .forEach {
+                    when (it) {
+                        is ViewGroup -> {
+                            val foundView = findViewAt(it, x, y)
+                            if (foundView?.isShown!!) return foundView
+                        }
+                        else -> {
+                            val location = IntArray(2)
+                            it.getLocationOnScreen(location)
+                            val rect = Rect(location[0], location[1], location[0] + it.width, location[1] + it.height)
+                            if (rect.contains(x, y)) return it
+                        }
                     }
                 }
-            }
         return null
     }
 
@@ -128,18 +118,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun openApplicationSettings() {
         val appSettingsIntent = Intent(
-            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            Uri.parse("package:$packageName"))
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.parse("package:$packageName"))
         startActivityForResult(appSettingsIntent, PERMISSION_REQUEST)
     }
 
     fun requestPermission() {
         ActivityCompat.requestPermissions(this,
-            arrayPermission,
-            PERMISSION_REQUEST)
+                arrayPermission,
+                PERMISSION_REQUEST)
     }
 
-    fun replaceFragment(resLayout : Int, fragment : BaseFragment) {
+    fun replaceFragment(resLayout: Int, fragment: BaseFragment) {
 
     }
 

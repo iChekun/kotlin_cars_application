@@ -20,7 +20,7 @@ class ServerCommunicator(private val mService: ApiService) {
     fun getAllUsers(): Single<Response<Array<Car>>> {
         return mService.getCars()
                 .compose(singleTransformer())
-                .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
+                .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message.toString()) }
     }
 
     fun getUser(id: Long): Single<Car> {

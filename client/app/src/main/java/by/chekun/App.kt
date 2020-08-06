@@ -1,7 +1,7 @@
 package by.chekun
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import by.chekun.di.component.*
 import by.chekun.di.module.ApiModule
 import by.chekun.di.module.DatabaseModule

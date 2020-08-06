@@ -2,7 +2,7 @@ package by.chekun.domain
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import by.chekun.presentation.widget.SingleLiveEvent
 import by.chekun.repository.AppRepository
 import by.chekun.repository.database.entity.Car

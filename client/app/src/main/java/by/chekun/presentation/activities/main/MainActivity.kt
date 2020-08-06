@@ -1,10 +1,10 @@
 package by.chekun.presentation.activities.main
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.databinding.DataBindingUtil
 import by.chekun.R
 import by.chekun.databinding.ActivityMainBinding
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initRecyclerView(users: List<Car>) {
-        val manager = LinearLayoutManager(this)
+        val manager = androidx.recyclerview.widget.LinearLayoutManager(this)
         val userAdapter = CarAdapter(this, users, itemClickListener)
         userAdapter.setItemClickListener(itemClickListener)
         rvUsers.layoutManager = manager
