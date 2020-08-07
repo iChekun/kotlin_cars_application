@@ -39,5 +39,5 @@ class CarDto : AbstractDto() {
     @NotNull(message = "Brand must be set!")
     lateinit var brand: BrandDto
 
-    lateinit var picture: ByteArray
+    var picture: ByteArray? = null
 }

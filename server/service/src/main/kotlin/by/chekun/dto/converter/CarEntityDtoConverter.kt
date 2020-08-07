@@ -24,7 +24,7 @@ class CarEntityDtoConverter(private val brandEntityDtoConverter: BrandEntityDtoC
         car.fuelType = d.fuelType
         car.wheelDriveType = d.wheelDriveType
         car.engineCapacity = d.engineCapacity
-        car.picture = d.picture.copyOf()
+        car.picture = d.picture?.copyOf()
 
         return car
     }
@@ -45,7 +45,7 @@ class CarEntityDtoConverter(private val brandEntityDtoConverter: BrandEntityDtoC
         carDto.fuelType = e.fuelType
         carDto.wheelDriveType = e.wheelDriveType
         carDto.engineCapacity = e.engineCapacity
-        carDto.picture = e.picture.copyOf()
+        carDto.picture = e.picture?.copyOf()
 
         return carDto
     }

@@ -46,6 +46,6 @@ class Car() : AbstractEntity() {
 
     @Lob
     @Column(name = "picture")
-    lateinit var picture: ByteArray
+    var picture: ByteArray? = null
 
 }

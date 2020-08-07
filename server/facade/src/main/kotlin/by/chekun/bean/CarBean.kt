@@ -43,6 +43,6 @@ class CarBean : AbstractBean() {
     @NotNull(message = "Brand must be set!")
     lateinit var brand: BrandBean
 
-    lateinit var picture: ByteArray
+    var picture: ByteArray? = null
 
 }
