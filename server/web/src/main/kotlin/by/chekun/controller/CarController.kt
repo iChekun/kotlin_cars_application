@@ -1,7 +1,7 @@
 package by.chekun.controller
 
 import by.chekun.bean.CarBean
-import by.chekun.bean.CarCreateBean
+import by.chekun.bean.CarRequestBean
 import by.chekun.controller.ControllerHelper.checkBindingResultAndThrowExceptionIfInvalid
 import by.chekun.dto.CarSearchCriteria
 import by.chekun.dto.Paging
@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import javax.validation.Valid
@@ -18,6 +19,7 @@ import javax.validation.constraints.Positive
 
 @RestController
 @RequestMapping("/cars")
+@Validated
 class CarController(private val carFacade: CarFacade) {
 
     @GetMapping
@@ -81,7 +83,7 @@ class CarController(private val carFacade: CarFacade) {
 
     @PostMapping
     fun save(
-        @Valid @RequestBody carBean: CarCreateBean,
+        @Valid @RequestBody carBean: CarRequestBean,
         result: BindingResult
     ): ResponseEntity<CarBean> {
         checkBindingResultAndThrowExceptionIfInvalid(result)
@@ -98,4 +100,21 @@ class CarController(private val carFacade: CarFacade) {
         return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
     }
 
+    @PutMapping("/{id}")
+    fun update(
+        @PathVariable
+        @Positive(message = "Id must be positive!")
+        id: Long,
+        @Valid
+        @RequestBody
+        carBean: CarRequestBean,
+        result: BindingResult?
+    ): ResponseEntity<CarBean> {
+        checkBindingResultAndThrowExceptionIfInvalid(result!!)
+        carBean.id = id
+        return ResponseEntity(
+            carFacade.update(carBean),
+            HttpStatus.OK
+        )
+    }
 }

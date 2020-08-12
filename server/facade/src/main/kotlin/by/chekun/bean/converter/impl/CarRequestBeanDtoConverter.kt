@@ -1,17 +1,18 @@
 package by.chekun.bean.converter.impl
 
-import by.chekun.bean.CarCreateBean
+import by.chekun.bean.CarRequestBean
 import by.chekun.bean.converter.RequestBeanDtoConverter
 import by.chekun.dto.CarDto
 import by.chekun.service.BrandService
 import org.springframework.stereotype.Component
 
 @Component
-class CarCreateBeanDtoConverter(private val brandService: BrandService) :
-    RequestBeanDtoConverter<CarCreateBean, CarDto> {
+class CarRequestBeanDtoConverter(private val brandService: BrandService) :
+    RequestBeanDtoConverter<CarRequestBean, CarDto> {
 
-    override fun toDto(b: CarCreateBean): CarDto {
+    override fun toDto(b: CarRequestBean): CarDto {
         val carDto = CarDto()
+        carDto.id = b.id
         carDto.model = b.model
         carDto.releaseYear = b.releaseYear
         carDto.price = b.price
@@ -26,7 +27,7 @@ class CarCreateBeanDtoConverter(private val brandService: BrandService) :
         carDto.wheelDriveType = b.wheelDriveType
         carDto.engineCapacity = b.engineCapacity
 
-        carDto.picture = b.picture.bytes.copyOf()
+        carDto.picture = b.picture?.bytes?.copyOf()
 
         return carDto
     }

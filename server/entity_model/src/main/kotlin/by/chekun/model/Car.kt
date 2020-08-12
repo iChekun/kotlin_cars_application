@@ -32,6 +32,15 @@ class Car() : AbstractEntity() {
     var engineCapacity: Double = 0.0
 
 
+    //color
+
+    //WIN number
+
+    //condition
+
+    //date of income
+    //update date
+
     @Column(name = "release_year")
     var releaseYear: Int = 0
 

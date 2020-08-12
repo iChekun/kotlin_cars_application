@@ -1,10 +1,10 @@
 package by.chekun.facade.impl
 
 import by.chekun.bean.CarBean
-import by.chekun.bean.CarCreateBean
+import by.chekun.bean.CarRequestBean
 import by.chekun.bean.PageWrapperBean
 import by.chekun.bean.converter.impl.CarBeanDtoConverter
-import by.chekun.bean.converter.impl.CarCreateBeanDtoConverter
+import by.chekun.bean.converter.impl.CarRequestBeanDtoConverter
 import by.chekun.dto.CarSearchCriteria
 import by.chekun.dto.Paging
 import by.chekun.exception.ResourceNotFoundException
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 @Service
 class CarFacadeImpl(
     private val carBeanDtoConverter: CarBeanDtoConverter,
-    private val carCreateBeanDtoConverter: CarCreateBeanDtoConverter,
+    private val carRequestBeanDtoConverter: CarRequestBeanDtoConverter,
     private val carService: CarService,
     private val brandService: BrandService
 ) : CarFacade {
@@ -46,12 +46,12 @@ class CarFacadeImpl(
         return carBeanDtoConverter.toBean(car)
     }
 
-    override fun save(carCreateBean: CarCreateBean): CarBean {
-        if (!brandService.isPresent(carCreateBean.brandId)) {
-            throw ResourceNotFoundException("Brand with id " + carCreateBean.brandId + " does not exist!")
+    override fun save(carRequestBean: CarRequestBean): CarBean {
+        if (!brandService.isPresent(carRequestBean.brandId)) {
+            throw ResourceNotFoundException("Brand with id " + carRequestBean.brandId + " does not exist!")
         }
 
-        val car = carCreateBeanDtoConverter.toDto(carCreateBean)
+        val car = carRequestBeanDtoConverter.toDto(carRequestBean)
         return carBeanDtoConverter.toBean(carService.save(car))
     }
 
@@ -63,8 +63,13 @@ class CarFacadeImpl(
         this.carService.delete(id)
     }
 
-    override fun update(carBean: CarBean) {
-        TODO("Not yet implemented")
+    override fun update(carRequestBean: CarRequestBean): CarBean {
+        if (!carService.isPresent(carRequestBean.id)) {
+            throw ResourceNotFoundException("Car with id " + carRequestBean.id + " does not exist!")
+        }
+        val updatedCar = carService.update(carRequestBeanDtoConverter.toDto(carRequestBean))
+
+        return carBeanDtoConverter.toBean(updatedCar)
     }
 
 }

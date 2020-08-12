@@ -1,8 +1,8 @@
 package by.chekun.bean.converter.impl
 
-import by.chekun.dto.BrandDto
 import by.chekun.bean.BrandBean
 import by.chekun.bean.converter.Converter
+import by.chekun.dto.BrandDto
 import org.springframework.stereotype.Component
 import java.util.stream.Collectors
 

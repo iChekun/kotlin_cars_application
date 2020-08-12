@@ -41,7 +41,13 @@ class BrandFacadeImpl(
         brandService.delete(id)
     }
 
-    override fun update(brandBean: BrandBean) {
-        TODO("Not yet implemented")
+    override fun update(brandBean: BrandBean): BrandBean {
+        if (!brandService.isPresent(brandBean.id)) {
+            throw ResourceNotFoundException("Brand with id " + brandBean.id + " does not exist !")
+        }
+
+        val updatedBrand = brandService.update(brandBeanDtoConverter.toDto(brandBean))
+
+        return brandBeanDtoConverter.toBean(updatedBrand)
     }
 }

@@ -47,8 +47,14 @@ class BrandServiceImpl(
     }
 
     @Transactional
-    override fun update(brandDto: BrandDto) {
-        //TODO
+    override fun update(brandDto: BrandDto): BrandDto {
+        this.brandRepository.findById(
+            brandDto.id
+        ).orElseThrow { throw ResourceNotFoundException("Brand with id " + brandDto.id + " not found!") }
+
+        val updatedBrand = brandRepository.save(brandEntityDtoConverter.toEntity(brandDto))
+
+        return brandEntityDtoConverter.toDto(updatedBrand)
     }
 
     @Transactional(readOnly = true)

@@ -55,7 +55,6 @@ class CarServiceImpl(
     @Transactional
     override fun save(carDto: CarDto): CarDto {
 
-
         brandRepository.findById(carDto.brand.id)
             .orElseThrow { throw ResourceNotFoundException("Can`t create car, because brand with id " + carDto.brand.id + " does not exist!") }
 
@@ -73,8 +72,14 @@ class CarServiceImpl(
     }
 
     @Transactional
-    override fun update(carDto: CarDto) {
-        TODO("Not yet implemented")
+    override fun update(carDto: CarDto): CarDto {
+        val car =
+            carRepository.findById(carDto.id)
+                .orElseThrow { throw ResourceNotFoundException("Car with id " + carDto.id + "not found!") }
+
+        val updatedCar = carRepository.save(carEntityDtoConverter.toEntity(carDto))
+
+        return carEntityDtoConverter.toDto(updatedCar)
     }
 
     @Transactional(readOnly = true)

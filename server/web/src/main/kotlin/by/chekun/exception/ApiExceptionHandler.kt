@@ -2,16 +2,26 @@ package by.chekun.exception
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.DataBinder
 import org.springframework.validation.FieldError
+import org.springframework.web.bind.UnsatisfiedServletRequestParameterException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.InitBinder
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.util.*
 import java.util.function.Consumer
+import javax.validation.ConstraintViolationException
 
 
 @ControllerAdvice
 class ApiExceptionHandler : ResponseEntityExceptionHandler() {
+
+    @InitBinder
+    private fun activateDirectFieldAccess(dataBinder: DataBinder) {
+        dataBinder.initDirectFieldAccess()
+    }
 
     @ExceptionHandler(ResourceNotFoundException::class)
     fun handleResourceNotFound(e: ResourceNotFoundException): ResponseEntity<ErrorMessage>? {
@@ -25,11 +35,42 @@ class ApiExceptionHandler : ResponseEntityExceptionHandler() {
         )
     }
 
+    @ExceptionHandler(ConstraintViolationException::class)
+    fun handleConstraintViolationException(e: ConstraintViolationException): ResponseEntity<List<ErrorMessage>>? {
+
+        println(e)
+
+        val errors = ArrayList<ErrorMessage>()
+        e.constraintViolations.forEach { er ->
+            errors.add(ErrorMessage(er.messageTemplate, HttpStatus.BAD_REQUEST.value()))
+        }
+        return ResponseEntity(errors, HttpStatus.BAD_REQUEST)
+    }
+
+
+    @ExceptionHandler(
+        UnsatisfiedServletRequestParameterException::class,
+        IllegalArgumentException::class,
+        MethodArgumentTypeMismatchException::class
+    )
+    fun handleJsonMappingException(e: Exception): ResponseEntity<ErrorMessage>? {
+        /*
+         * Exception occurs when passed id is null. Status 400.
+         */
+        return ResponseEntity(
+            ErrorMessage("Request parameters are not valid!", HttpStatus.BAD_REQUEST.value()),
+            HttpStatus.BAD_REQUEST
+        )
+    }
+
     @ExceptionHandler(IllegalRequestException::class)
     fun handleValidation(e: IllegalRequestException): ResponseEntity<List<ErrorMessage?>>? {
         /*
          * Validation exceptions handling. Status code 400.
          */
+
+        println(e)
+
         val errors: MutableList<ErrorMessage?> = ArrayList()
         e.errors.forEach(Consumer { er: FieldError ->
             errors.add(

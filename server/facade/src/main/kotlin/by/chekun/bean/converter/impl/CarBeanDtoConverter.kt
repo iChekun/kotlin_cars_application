@@ -27,6 +27,7 @@ class CarBeanDtoConverter(private val brandBeanDtoConverter: BrandBeanDtoConvert
         carDto.fuelType = b.fuelType
         carDto.wheelDriveType = b.wheelDriveType
         carDto.engineCapacity = b.engineCapacity
+        carDto.picture = b.picture
 
         return carDto
     }
@@ -47,6 +48,7 @@ class CarBeanDtoConverter(private val brandBeanDtoConverter: BrandBeanDtoConvert
         carBean.fuelType = d.fuelType
         carBean.wheelDriveType = d.wheelDriveType
         carBean.engineCapacity = d.engineCapacity
+        carBean.picture = d.picture
 
         return carBean
     }

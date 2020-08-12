@@ -12,6 +12,6 @@ interface BrandFacade {
 
     fun delete(id: Long)
 
-    fun update(brandBean: BrandBean)
+    fun update(brandBean: BrandBean): BrandBean
 
 }

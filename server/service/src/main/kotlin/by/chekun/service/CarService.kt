@@ -15,7 +15,7 @@ interface CarService {
 
     fun delete(id: Long)
 
-    fun update(carDto: CarDto)
+    fun update(carDto: CarDto): CarDto
 
     fun isPresent(id: Long): Boolean
 }

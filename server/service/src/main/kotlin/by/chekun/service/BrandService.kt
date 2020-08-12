@@ -12,7 +12,7 @@ interface BrandService {
 
     fun delete(id: Long)
 
-    fun update(brandDto: BrandDto)
+    fun update(brandDto: BrandDto): BrandDto
 
     fun isPresent(id: Long): Boolean
 }
