@@ -1,12 +1,16 @@
 package by.chekun.repository.server
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import by.chekun.repository.database.entity.Car
+import by.chekun.repository.database.pojo.CarRequest
 import io.reactivex.ObservableTransformer
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.util.concurrent.TimeUnit
 
@@ -17,14 +21,18 @@ class ServerCommunicator(private val mService: ApiService) {
         private const val DEFAULT_RETRY_ATTEMPTS = 4L
     }
 
-    fun getAllUsers(): Single<Response<Array<Car>>> {
+    fun getAllCars(): Single<Response<Array<Car>>> {
         return mService.getCars()
                 .compose(singleTransformer())
                 .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message.toString()) }
     }
 
-    fun getUser(id: Long): Single<Car> {
+    fun getCar(id: Long): Single<Car> {
         return mService.getCarById(id).compose(singleTransformer())
+    }
+
+    fun saveCar(car: CarRequest): Call<CarRequest> {
+        return mService.saveCar(car)
     }
 
     private fun <T> singleTransformer(): SingleTransformer<T, T> = SingleTransformer {

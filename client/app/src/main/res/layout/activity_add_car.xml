@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlueAccent"
+        android:orientation="vertical"
+        tools:context=".presentation.activities.add.AddCarActivity">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            style="@style/layout_width_and_height_match">
+
+            <LinearLayout
+                style="@style/layout_width_and_height_match"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/model_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="model"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/generation_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="generation"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/mileage_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="mileage"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/body_type_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="bodyType"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/transmission_type_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="transmissionType"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/fuel_type_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="fuelType"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/wheel_drive_type_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="wheelDriveType"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/engine_capacity_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="engineCapacity"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/release_year_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="releaseYear"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/price_text_fild"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="price"
+                    android:inputType="numberDecimal" />
+
+
+                <Spinner
+                    android:id="@+id/brand_spinner"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/save_contact"
+                    android:onClick="clickSaveCar"
+                    style="@style/layout_width_and_height_match"
+                    android:text="@string/button_save_car" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

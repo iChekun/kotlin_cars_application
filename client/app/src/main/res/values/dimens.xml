@@ -9,4 +9,8 @@
     <dimen name="txt_size_20">20sp</dimen>
     <dimen name="txt_size_35">40sp</dimen>
     <dimen name="txt_size_100">100sp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
 </resources>

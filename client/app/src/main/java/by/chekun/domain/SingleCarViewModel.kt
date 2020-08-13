@@ -14,7 +14,7 @@ class SingleCarViewModel(application: Application, private val mRepository: AppR
 
     @SuppressLint("CheckResult")
     fun getItem(id: Long) {
-        mRepository.getUser(id).subscribe { list -> liveDataItem.value = list }
+        mRepository.getCar(id).subscribe { list -> liveDataItem.value = list }
     }
 
     fun getLiveDataItem(): LiveData<Car> {

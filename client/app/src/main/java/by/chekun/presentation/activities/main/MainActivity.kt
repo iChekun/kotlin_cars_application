@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initRecyclerView(users: List<Car>) {
-        val manager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        val manager = LinearLayoutManager(this)
         val userAdapter = CarAdapter(this, users, itemClickListener)
         userAdapter.setItemClickListener(itemClickListener)
         rvUsers.layoutManager = manager

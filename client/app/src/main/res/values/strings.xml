@@ -26,6 +26,35 @@
     <string name="txt_release_year">Release year</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_add_car">Add car</string>
+    <string name="action_settings">settings</string>
+    <string name="action_search">Search</string>
 
+
+
+    <!-- languages -->
+    <string-array name="language_list">
+        <item>English</item>
+        <item>Русский</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="developer_mode_on">prog mod on</string>
+    <string name="developer_mode_off">prog mod off</string>
+    <string name="button_save_car">save car</string>
+
+
+
+
+    <!-- -->
+
+    <string-array name="brand_ids">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
 </resources>

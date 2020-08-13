@@ -10,17 +10,21 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.Settings
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
+import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import by.chekun.App
 import by.chekun.R
 import by.chekun.di.component.ViewModelComponent
+import by.chekun.presentation.activities.add.AddCarActivity
+import by.chekun.presentation.activities.settings.SettingsActivity
 import by.chekun.utils.hideKeyboardEx
 import java.util.*
 
@@ -50,6 +54,40 @@ abstract class BaseActivity : AppCompatActivity() {
         super.finish()
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down)
     }
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        //handle presses on the action bar items
+        when (item.itemId) {
+            R.id.action_add_car -> {
+                startActivity(Intent(this, AddCarActivity::class.java))
+                return true
+            }
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        // Action View
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
+        //SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        // Configure the search info and add any event listeners
+        //return super.onCreateOptionsMenu(menu);
+        return true
+    }
+
+
+
+
 
     protected fun getToolbar(): Toolbar? = mToolbar
 
@@ -118,7 +156,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun openApplicationSettings() {
         val appSettingsIntent = Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:$packageName"))
         startActivityForResult(appSettingsIntent, PERMISSION_REQUEST)
     }
