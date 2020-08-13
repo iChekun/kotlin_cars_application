@@ -6,7 +6,7 @@
 
         <variable
             name="car"
-            type="by.chekun.repository.database.entity.Car" />
+            type="by.chekun.repository.database.entity.car.view.CarDto" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_weight="1"
-                android:text="@{car.brandTitleAndModel}"
+                android:text="@{car.brand.title}"
                 android:textSize="15sp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_weight="1"
-                android:text="@{car.carCardDescription}"
+                android:text="@{car.model.name}"
                 android:textSize="15sp" />
 
 

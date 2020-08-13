@@ -2,6 +2,8 @@ package by.chekun.repository
 
 import by.chekun.repository.database.AppDatabase
 import by.chekun.repository.database.entity.Car
+import by.chekun.repository.database.entity.brand.BrandResponse
+import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.repository.database.pojo.CarRequest
 import by.chekun.repository.server.ServerCommunicator
 import io.reactivex.Single
@@ -12,11 +14,11 @@ import retrofit2.Call
 
 class AppRepository(private val serverCommunicator: ServerCommunicator, private val mainDatabase: AppDatabase) {
 
-    fun getAll(): Single<List<Car>>? {
+    fun getAllCars(): Single<List<CarDto>?> {
         return serverCommunicator.getAllCars()
                 .flatMap { list ->
-                    mainDatabase.carDao().insertList(list.body())
-                    Single.just(mainDatabase.carDao().getAll())
+                    //mainDatabase.carDao().insertList(list.body().cars)
+                    Single.just(list.body()?.cars)
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,4 +38,10 @@ class AppRepository(private val serverCommunicator: ServerCommunicator, private 
     fun saveCar(car: CarRequest): Call<CarRequest> {
         return serverCommunicator.saveCar(car)
     }
+
+    fun getAllBrands(): Call<BrandResponse>? {
+        return serverCommunicator.getBrands()
+    }
+
+
 }

@@ -7,11 +7,11 @@ import by.chekun.databinding.CarItemBinding
 import by.chekun.presentation.base.BaseAdapter
 import by.chekun.presentation.item.CarItemClickListener
 import by.chekun.presentation.item.CarViewHolder
-import by.chekun.repository.database.entity.Car
+import by.chekun.repository.database.entity.car.view.CarDto
 
 
-class CarAdapter(private val context: Context, private val cars: List<Car>, private val listener: CarItemClickListener<Car>) :
-        BaseAdapter<CarViewHolder, Car, CarItemClickListener<Car>>(cars as MutableList<Car>, listener) {
+class CarAdapter(private val context: Context, private val cars: List<CarDto>, private val listener: CarItemClickListener<CarDto>) :
+        BaseAdapter<CarViewHolder, CarDto, CarItemClickListener<CarDto>>(cars as MutableList<CarDto>, listener) {
 
 
     override fun getItemCount(): Int {

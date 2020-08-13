@@ -1,11 +1,12 @@
 package by.chekun.presentation.activities.main
 
-import androidx.lifecycle.Observer
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.chekun.R
 import by.chekun.databinding.ActivityMainBinding
 import by.chekun.di.component.ViewModelComponent
@@ -14,9 +15,7 @@ import by.chekun.presentation.activities.detail.DetailActivity
 import by.chekun.presentation.adapter.CarAdapter
 import by.chekun.presentation.base.BaseActivity
 import by.chekun.presentation.item.CarItemClickListener
-import by.chekun.repository.database.entity.Car
-
-
+import by.chekun.repository.database.entity.car.view.CarDto
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -31,12 +30,12 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel?.getAllItems()
-        viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } } )
+        viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } })
     }
 
-    private fun initRecyclerView(users: List<Car>) {
+    private fun initRecyclerView(cars: List<CarDto>) {
         val manager = LinearLayoutManager(this)
-        val userAdapter = CarAdapter(this, users, itemClickListener)
+        val userAdapter = CarAdapter(this, cars, itemClickListener)
         userAdapter.setItemClickListener(itemClickListener)
         rvUsers.layoutManager = manager
         rvUsers.adapter = userAdapter
@@ -51,8 +50,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private val itemClickListener = object : CarItemClickListener<Car> {
-        override fun openDetail(entity: Car) {
+    private val itemClickListener = object : CarItemClickListener<CarDto> {
+        override fun openDetail(entity: CarDto) {
             openItemDetail(entity.id)
         }
     }

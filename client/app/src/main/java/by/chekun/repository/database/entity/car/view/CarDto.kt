@@ -1,0 +1,66 @@
+package by.chekun.repository.database.entity.car.view
+
+import by.chekun.repository.database.entity.AbstractDto
+import by.chekun.repository.database.entity.brand.BodyTypeDto
+import by.chekun.repository.database.entity.car.MileageDto
+import by.chekun.repository.database.entity.car.chassis.EngineTypeDto
+import by.chekun.repository.database.entity.car.chassis.TransmissionTypeDto
+import by.chekun.repository.database.entity.car.chassis.WheelDriveTypeDto
+import by.chekun.repository.database.entity.car.equipment.ColorDto
+import by.chekun.repository.database.entity.car.equipment.ConditionDto
+import by.chekun.repository.database.entity.car.equipment.SafetyDto
+import by.chekun.repository.database.entity.car.interior.InteriorColorDto
+import by.chekun.repository.database.entity.car.interior.InteriorDto
+import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
+import java.time.LocalDateTime
+
+
+class CarDto() : AbstractDto() {
+
+    lateinit var brand: CarBrandDto
+
+    lateinit var model: CarModelDto
+
+    lateinit var releaseYear: CarReleaseYearDto
+
+    lateinit var generation: CarGenerationDto
+
+    lateinit var bodyType: BodyTypeDto
+
+    lateinit var color: ColorDto
+
+    lateinit var condition: ConditionDto
+
+    lateinit var mileage: MileageDto
+
+    lateinit var interiorColor: InteriorColorDto
+
+    lateinit var interiorMaterial: InteriorMaterialDto
+
+    var safeties: Set<SafetyDto> = HashSet()
+
+    var interior: Set<InteriorDto> = HashSet()
+
+    lateinit var engineType: EngineTypeDto
+
+    var engineCapacity: Double = 0.0
+
+    lateinit var transmissionType: TransmissionTypeDto
+
+    lateinit var wheelDriveType: WheelDriveTypeDto
+
+    var price: Double = 0.0
+
+    lateinit var description: String
+
+    var picture: ByteArray? = null
+
+    var dateOfCreation: String? = null
+
+    var dateOfModification: String? = null
+
+
+    fun getPriceString(): String {
+        return price.toString()
+    }
+}

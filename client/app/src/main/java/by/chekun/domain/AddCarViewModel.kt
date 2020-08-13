@@ -2,6 +2,7 @@ package by.chekun.domain
 
 import android.app.Application
 import by.chekun.repository.AppRepository
+import by.chekun.repository.database.entity.brand.BrandResponse
 import by.chekun.repository.database.pojo.CarRequest
 import retrofit2.Call
 
@@ -11,4 +12,7 @@ class AddCarViewModel(application: Application, private val mRepository: AppRepo
         return mRepository.saveCar(car)
     }
 
+    fun getBrands(): Call<BrandResponse>? {
+        return mRepository.getAllBrands()
+    }
 }

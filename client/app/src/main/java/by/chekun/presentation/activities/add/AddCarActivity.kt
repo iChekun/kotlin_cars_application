@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -13,6 +12,7 @@ import by.chekun.di.component.ViewModelComponent
 import by.chekun.domain.AddCarViewModel
 import by.chekun.presentation.activities.main.MainActivity
 import by.chekun.presentation.base.BaseActivity
+import by.chekun.repository.database.entity.brand.BrandResponse
 import by.chekun.repository.database.pojo.CarRequest
 import kotlinx.android.synthetic.main.activity_add_car.*
 import retrofit2.Call
@@ -36,23 +36,37 @@ class AddCarActivity : BaseActivity() {
         Objects.requireNonNull(supportActionBar)?.setDisplayHomeAsUpEnabled(true)
 
 
-        et_model = findViewById(R.id.model_text_field) as EditText
+        et_model = findViewById(R.id.model_text_field)
 
         addBrandSpinner()
     }
 
     private fun addBrandSpinner() {
-        val spinner: Spinner = findViewById(R.id.brand_spinner)
-        ArrayAdapter.createFromResource(
-                this,
-                R.array.brand_ids,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }
+
+        val context = this
+        val call = viewModel?.getBrands()
+
+        call?.enqueue(object : Callback<BrandResponse> {
+
+            override fun onResponse(call: Call<BrandResponse>, response: Response<BrandResponse>) {
+
+                val spinner: Spinner = findViewById(R.id.brand_spinner)
+
+                val responseList = response.body()?.brands
+
+                val adapter = BrandArrayAdapter(context,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        responseList!!.toTypedArray()
+                )
+                val brandSpinnerListener = BrandSpinnerListener(adapter, spinner)
+                brandSpinnerListener.configureSpinner()
+            }
+
+
+            override fun onFailure(call: Call<BrandResponse>, t: Throwable) {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
 
