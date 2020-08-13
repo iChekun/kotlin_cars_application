@@ -8,6 +8,6 @@ jar {
 }
 
 dependencies {
-    compile project(":facade")
+    compile project(":service")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 }

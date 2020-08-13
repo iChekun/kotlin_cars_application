@@ -1,11 +1,13 @@
 package by.chekun.controller
 
-import by.chekun.bean.CarBean
-import by.chekun.bean.CarRequestBean
+
 import by.chekun.controller.ControllerHelper.checkBindingResultAndThrowExceptionIfInvalid
-import by.chekun.dto.CarSearchCriteria
-import by.chekun.dto.Paging
-import by.chekun.facade.CarFacade
+import by.chekun.dto.car.CarRequestDto
+import by.chekun.dto.car.view.CarDto
+import by.chekun.dto.helper.PageWrapper
+import by.chekun.dto.helper.Paging
+import by.chekun.dto.search.CarSearchCriteria
+import by.chekun.service.CarService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -20,7 +22,7 @@ import javax.validation.constraints.Positive
 @RestController
 @RequestMapping("/cars")
 @Validated
-class CarController(private val carFacade: CarFacade) {
+class CarController(private val carService: CarService) {
 
     @GetMapping
     fun findAll(
@@ -43,13 +45,13 @@ class CarController(private val carFacade: CarFacade) {
         @RequestParam(value = "sortBy", required = false, defaultValue = "price") sortBy: String,
         @RequestParam(value = "sortType", required = false, defaultValue = "ASC") sortType: String
 
-    ): ResponseEntity<List<CarBean>> {
+    ): ResponseEntity<PageWrapper<CarDto?>> {
         val paging = Paging(size, page)
         val searchCriteria = getSearchCriteria(model, releaseYear, minPrice, maxPrice, brandTitle, sortBy, sortType)
-        val cars = carFacade.findAll(paging, searchCriteria)
+        val carPage = carService.findAll(paging, searchCriteria)
 
         return ResponseEntity(
-            cars.objects,
+            carPage,
             HttpStatus.OK
         )
     }
@@ -75,28 +77,30 @@ class CarController(private val carFacade: CarFacade) {
             message = "Id can`t be <0"
         )
         @PathVariable(value = "id") id: Long
-    ): ResponseEntity<CarBean> {
-        val car = carFacade.findById(id)
+    ): ResponseEntity<CarDto?> {
+        val car = carService.findById(id)
 
         return ResponseEntity.ok(car)
     }
 
     @PostMapping
     fun save(
-        @Valid @RequestBody carBean: CarRequestBean,
+        @Valid @RequestBody car: CarRequestDto,
         result: BindingResult
-    ): ResponseEntity<CarBean> {
+    ): ResponseEntity<CarDto?> {
         checkBindingResultAndThrowExceptionIfInvalid(result)
-        val saved = carFacade.save(carBean)
+        val saved = carService.save(car)
         val httpHeaders = HttpHeaders()
-        httpHeaders.location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(saved.id).toUri()
+        if (saved != null) {
+            httpHeaders.location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(saved.id).toUri()
+        }
         return ResponseEntity(saved, httpHeaders, HttpStatus.CREATED)
     }
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<*>? {
-        carFacade.delete(id)
+        carService.delete(id)
         return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
     }
 
@@ -107,13 +111,13 @@ class CarController(private val carFacade: CarFacade) {
         id: Long,
         @Valid
         @RequestBody
-        carBean: CarRequestBean,
+        carBean: CarDto,
         result: BindingResult?
-    ): ResponseEntity<CarBean> {
+    ): ResponseEntity<CarDto?> {
         checkBindingResultAndThrowExceptionIfInvalid(result!!)
         carBean.id = id
         return ResponseEntity(
-            carFacade.update(carBean),
+            carService.update(carBean),
             HttpStatus.OK
         )
     }
