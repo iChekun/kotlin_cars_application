@@ -23,6 +23,7 @@ class ModelSpinnerHolder(private val context: Context,
     private fun initModelSpinner(spinner: Spinner, context: Context, models: Set<ModelDto>) {
 
         val newList: MutableList<ModelDto> = ArrayList()
+        newList.add(ModelDto(""))
         newList.addAll(models)
 
         val modelsArray = newList.toTypedArray()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -45,6 +45,7 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -164,12 +165,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
-
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/condition_spinner"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_condition" />
 
                 </RelativeLayout>
 
@@ -242,11 +243,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/engine_spinner"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_engine_type" />
                 </RelativeLayout>
 
 
@@ -319,12 +321,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
 
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/transmission_type_spinner"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_transmission" />
 
                 </RelativeLayout>
 
@@ -345,12 +348,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
 
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/wheel_drive_spinner"
-                        android:layout_width="match_parent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_wheel_drive_type" />
 
-                        android:layout_height="wrap_content" />
 
                 </RelativeLayout>
 
@@ -371,12 +376,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
-
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/color_spinner"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_color" />
 
                 </RelativeLayout>
 
@@ -397,12 +402,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
 
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/interior_material_spinner"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_interior_material" />
 
                 </RelativeLayout>
 
@@ -423,11 +429,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <Spinner
-
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/interior_color_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:hintText="@string/label_interior_color" />
 
                 </RelativeLayout>
 

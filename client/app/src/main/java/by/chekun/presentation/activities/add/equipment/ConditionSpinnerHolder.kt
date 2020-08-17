@@ -5,65 +5,39 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.TextView
 import by.chekun.repository.database.entity.car.equipment.ConditionDto
+import com.androidbuts.multispinnerfilter.KeyPairBoolData
+import com.androidbuts.multispinnerfilter.SingleSpinner
 
-class ConditionSpinnerHolder(private val context: Context,
-private val spinner: Spinner) {
+class ConditionSpinnerHolder(private val conditionSingleSpinner: SingleSpinner) {
 
 
-    fun initModelSpinnerHolderWithValues(conditions: Set<ConditionDto>) {
-        initModelSpinner(context, conditions)
+    fun initModelSpinnerHolderWithValues(values: Set<ConditionDto>) {
+        initModelSpinner(values)
     }
 
 
-    private fun initModelSpinner(context: Context, models: Set<ConditionDto>) {
+    private fun initModelSpinner(values: Set<ConditionDto>) {
 
-        val newList: MutableList<ConditionDto> = ArrayList()
-        newList.add(ConditionDto(""))
+        val list: MutableList<KeyPairBoolData> = java.util.ArrayList()
 
-        newList.addAll(models)
-
-        val conditionsArray = newList.toTypedArray()
-        val adapter = createModelAdapter(context, conditionsArray)
-        spinner.adapter = adapter
-    }
-
-
-    private fun createModelAdapter(context: Context, values: Array<ConditionDto>): ArrayAdapter<ConditionDto> {
-
-        return object : ArrayAdapter<ConditionDto>(context, android.R.layout.simple_spinner_dropdown_item, values) {
-
-
-            override fun getCount(): Int {
-                return values.size
-            }
-
-            override fun getItem(position: Int): ConditionDto {
-                return values[position]
-            }
-
-            override fun getItemId(position: Int): Long {
-                return values[position].id
-            }
-
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-
-                val label = super.getView(position, convertView, parent) as TextView
-                label.setTextColor(Color.BLACK)
-                label.text = values[position].value
-                return label
-            }
-
-            override fun getDropDownView(position: Int, convertView: View?,
-                                         parent: ViewGroup): View {
-                val label = super.getDropDownView(position, convertView, parent) as TextView
-                label.setTextColor(Color.BLACK)
-                label.text = values[position].value
-                return label
-            }
-
+        values.forEach { condition ->
+            val h = KeyPairBoolData()
+            h.id = condition.id
+            h.name = condition.value
+            h.isSelected = false
+            list.add(h)
         }
+
+        conditionSingleSpinner.isColorseparation = true
+        conditionSingleSpinner.setItems(list, -1) { items ->
+            for (i in items!!.indices) {
+                if (items[i].isSelected) {
+
+                }
+            }
+        }
+
     }
 }

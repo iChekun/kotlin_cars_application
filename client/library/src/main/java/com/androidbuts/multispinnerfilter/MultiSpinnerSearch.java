@@ -1,6 +1,5 @@
 package com.androidbuts.multispinnerfilter;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -346,7 +345,7 @@ public class MultiSpinnerSearch extends AppCompatSpinner implements OnCancelList
             return convertView;
         }
 
-        @SuppressLint("DefaultLocale")
+        //@SuppressLint("DefaultLocale")
         @Override
         public Filter getFilter() {
             return new Filter() {

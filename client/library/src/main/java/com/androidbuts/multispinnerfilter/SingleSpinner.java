@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingleSpinner extends AppCompatSpinner implements OnCancelListener {
+
     private static final String TAG = SingleSpinner.class.getSimpleName();
     public static AlertDialog.Builder builder;
     public static AlertDialog ad;
@@ -87,6 +88,29 @@ public class SingleSpinner extends AppCompatSpinner implements OnCancelListener 
         }
         return selectedItemsIds;
     }
+
+    ////////
+    @Override
+    public long getSelectedItemId() {
+        for (KeyPairBoolData item : items) {
+            if (item.isSelected()) {
+                return item.getId();
+            }
+        }
+        return 0L;
+    }
+
+    @Override
+    public Object getSelectedItem() {
+        for (KeyPairBoolData item : items) {
+            if (item.isSelected()) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    ///////
 
     @Override
     public void onCancel(DialogInterface dialog) {

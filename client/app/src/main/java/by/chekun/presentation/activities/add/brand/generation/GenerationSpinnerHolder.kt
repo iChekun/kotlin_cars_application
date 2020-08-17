@@ -22,6 +22,7 @@ class GenerationSpinnerHolder(private val context: Context,
     private fun initModelSpinner(spinner: Spinner, context: Context, values: Set<GenerationDto>) {
 
         val newList: MutableList<GenerationDto> = ArrayList()
+        newList.add(GenerationDto(""))
         newList.addAll(values)
 
         val modelsArray = newList.toTypedArray()

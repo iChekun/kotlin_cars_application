@@ -20,6 +20,7 @@ import by.chekun.repository.database.entity.car.MileageDto
 import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.utils.*
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+import com.androidbuts.multispinnerfilter.SingleSpinner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,14 +68,16 @@ class AddCarActivity : BaseActivity() {
         val generationSpinner: Spinner = findViewById(R.id.generation_spinner)
         val bodyTypeSpinner: Spinner = findViewById(R.id.body_type_spinner)
 
-        val conditionSpinner: Spinner = findViewById(R.id.condition_spinner)
-        val engineSpinner: Spinner = findViewById(R.id.engine_spinner)
 
-        val transmissionSpinner: Spinner = findViewById(R.id.transmission_type_spinner)
-        val wheelDriveTypeSpinner: Spinner = findViewById(R.id.wheel_drive_spinner)
-        val colorSpinner: Spinner = findViewById(R.id.color_spinner)
-        val interiorColorSpinner: Spinner = findViewById(R.id.interior_color_spinner)
-        val interiorMaterialSpinner: Spinner = findViewById(R.id.interior_material_spinner)
+        val conditionSpinner: SingleSpinner = findViewById(R.id.condition_spinner)
+
+        val engineSpinner: SingleSpinner = findViewById(R.id.engine_spinner)
+
+        val transmissionSpinner: SingleSpinner = findViewById(R.id.transmission_type_spinner)
+        val wheelDriveTypeSpinner: SingleSpinner = findViewById(R.id.wheel_drive_spinner)
+        val colorSpinner: SingleSpinner = findViewById(R.id.color_spinner)
+        val interiorColorSpinner: SingleSpinner = findViewById(R.id.interior_color_spinner)
+        val interiorMaterialSpinner: SingleSpinner = findViewById(R.id.interior_material_spinner)
 
         val safetiesMultipleSpinner: MultiSpinnerSearch = findViewById(R.id.searchMultiSpinnerUnlimited)
 
@@ -86,6 +89,8 @@ class AddCarActivity : BaseActivity() {
         addActivitySpinners[GENERATION_SPINNER_KEY] = generationSpinner
 
         addActivitySpinners[CONDITION_SPINNER_KEY] = conditionSpinner
+
+
         addActivitySpinners[ENGINE_TYPE_SPINNER_KEY] = engineSpinner
 
         addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY] = transmissionSpinner
@@ -106,7 +111,6 @@ class AddCarActivity : BaseActivity() {
         val bodyTypeId: Long = addActivitySpinners[BODY_TYPE_SPINNER_KEY]!!.selectedItemId
         val transmissionTypeId: Long = addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY]!!.selectedItemId
         val engineTypeId: Long = addActivitySpinners[ENGINE_TYPE_SPINNER_KEY]!!.selectedItemId
-        val engineCapacity: Double = R.id.txt_engine_capacity.toDouble()
         val wheelDriveTypeId: Long = addActivitySpinners[WHEEL_DRIVE_TYPE_SPINNER_KEY]!!.selectedItemId
         val colorId: Long = addActivitySpinners[COLOR_TYPE_SPINNER_KEY]!!.selectedItemId
         val conditionId: Long = addActivitySpinners[CONDITION_SPINNER_KEY]!!.selectedItemId
@@ -123,8 +127,6 @@ class AddCarActivity : BaseActivity() {
         val mileage = MileageDto()
         mileage.mileage = mileageDistance
 
-        val description: String = R.id.txt_description_value.toString()
-
         val carRequestDto = CarRequestDto()
         carRequestDto.brandId = brandId
         carRequestDto.modelId = modelId
@@ -132,7 +134,10 @@ class AddCarActivity : BaseActivity() {
         carRequestDto.bodyTypeId = bodyTypeId
         carRequestDto.transmissionTypeId = transmissionTypeId
         carRequestDto.engineTypeId = engineTypeId
-        carRequestDto.engineCapacity = engineCapacity
+
+        val engineCapacityEditText = findViewById<EditText>(R.id.txt_engine_capacity)
+        carRequestDto.engineCapacity = engineCapacityEditText.text.toString().toDouble()
+
         carRequestDto.wheelDriveTypeId = wheelDriveTypeId
         carRequestDto.colorId = colorId
         carRequestDto.conditionId = conditionId
@@ -141,31 +146,33 @@ class AddCarActivity : BaseActivity() {
         carRequestDto.releaseYear = releaseYear
         carRequestDto.price = price
         carRequestDto.mileage = mileage
-        carRequestDto.description = description
+
+        val descriptionEditText = findViewById<EditText>(R.id.txt_description_value)
+        carRequestDto.description = descriptionEditText.text.toString()
 
 
         //val car = CarRequest(model, generation, mileage, bodyType, transmissionType, fuelType, wheelDriveType, engineCapacity, releaseYear, price, description, 1)
 
         //println(car.toString())
 
-        viewModel?.saveCar(carRequestDto)?.enqueue(object : Callback<CarDto> {
-
-            override fun onResponse(call: Call<CarDto>?, response: Response<CarDto>) {
-
-                if (response.isSuccessful) {
-
-                    showToast("CarDto added")
-                    showMainActivity()
-                } else {
-                    showToast("Can`t create car! Fill fields according with pattern.")
-                }
-
-            }
-
-            override fun onFailure(call: Call<CarDto>?, t: Throwable?) {
-                showToast("Mistake throwable!")
-            }
-        })
+//        viewModel?.saveCar(carRequestDto)?.enqueue(object : Callback<CarDto> {
+//
+//            override fun onResponse(call: Call<CarDto>?, response: Response<CarDto>) {
+//
+//                if (response.isSuccessful) {
+//
+//                    showToast("CarDto added")
+//                    showMainActivity()
+//                } else {
+//                    showToast("Can`t create car! Fill fields according with pattern.")
+//                }
+//
+//            }
+//
+//            override fun onFailure(call: Call<CarDto>?, t: Throwable?) {
+//                showToast("Mistake throwable!")
+//            }
+//        })
 
 
     }

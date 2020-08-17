@@ -29,6 +29,7 @@ import by.chekun.repository.database.entity.car.interior.InteriorComponent
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
 import by.chekun.utils.*
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+import com.androidbuts.multispinnerfilter.SingleSpinner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,14 +39,14 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
 
     fun initSpinners(context: AddCarActivity) {
         initBrandSpinner(context)
-        initEquipment(context)
-        initChassis(context)
+        initEquipment()
+        initChassis()
         initInterior(context)
 
     }
 
 
-    private fun initChassis(context: AddCarActivity) {
+    private fun initChassis() {
         val call = viewModel?.getChassis()
 
         call?.enqueue(object : Callback<ChassisComponent> {
@@ -57,19 +58,19 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
                 val engineList = chassis.engineTypes
                 val newEngineList: MutableSet<EngineTypeDto> = HashSet()
                 newEngineList.addAll(engineList)
-                val engineSpinnerHolder = EngineSpinnerHolder(context, addActivitySpinners[ENGINE_TYPE_SPINNER_KEY]!!)
+                val engineSpinnerHolder = EngineSpinnerHolder((addActivitySpinners[ENGINE_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 engineSpinnerHolder.initModelSpinnerHolderWithValues(newEngineList)
                 //////////////////////////////////////
                 val transmissionTypesList = chassis.transmissionTypes
                 val newTransmissionTypesList: MutableSet<TransmissionTypeDto> = HashSet()
                 newTransmissionTypesList.addAll(transmissionTypesList)
-                val transmissionTypeHolder = TransmissionSpinnerHolder(context, addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY]!!)
+                val transmissionTypeHolder = TransmissionSpinnerHolder((addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 transmissionTypeHolder.initModelSpinnerHolderWithValues(newTransmissionTypesList)
                 //////////////////////////////////////
                 val wheelDriveTypes = chassis.wheelDriveTypes
                 val newWheelDriveTypes: MutableSet<WheelDriveTypeDto> = HashSet()
                 newWheelDriveTypes.addAll(wheelDriveTypes)
-                val wheelDriveSpinnerHolder = WheelDriveSpinnerHolder(context, addActivitySpinners[WHEEL_DRIVE_TYPE_SPINNER_KEY]!!)
+                val wheelDriveSpinnerHolder = WheelDriveSpinnerHolder((addActivitySpinners[WHEEL_DRIVE_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 wheelDriveSpinnerHolder.initModelSpinnerHolderWithValues(newWheelDriveTypes)
                 //////////////////////////////////////
             }
@@ -81,7 +82,7 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
         })
     }
 
-    private fun initEquipment(context: AddCarActivity) {
+    private fun initEquipment() {
         val call = viewModel?.getEquipment()
 
         call?.enqueue(object : Callback<EquipmentComponent> {
@@ -93,13 +94,13 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
                 val conditionList = equipment.conditions
                 val newConditionList: MutableSet<ConditionDto> = HashSet()
                 newConditionList.addAll(conditionList)
-                val modelSpinnerHolder = ConditionSpinnerHolder(context, addActivitySpinners[CONDITION_SPINNER_KEY]!!)
-                modelSpinnerHolder.initModelSpinnerHolderWithValues(newConditionList)
+                val conditionSpinnerHolder = ConditionSpinnerHolder((addActivitySpinners[CONDITION_SPINNER_KEY] as SingleSpinner?)!!)
+                conditionSpinnerHolder.initModelSpinnerHolderWithValues(newConditionList)
                 //////////////////////////////////////
                 val colorsList = equipment.colors
                 val newColorList: MutableSet<ColorDto> = HashSet()
                 newColorList.addAll(colorsList)
-                val colorSpinnerHolder = ColorSpinnerHolder(context, addActivitySpinners[COLOR_TYPE_SPINNER_KEY]!!)
+                val colorSpinnerHolder = ColorSpinnerHolder((addActivitySpinners[COLOR_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 colorSpinnerHolder.initModelSpinnerHolderWithValues(newColorList)
                 //////////////////////////////////////
                 val safetiesList = equipment.safeties
@@ -130,13 +131,13 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
                 val interiorColorsList = equipment.interiorColors
                 val newInteriorColorsList: MutableSet<InteriorColorDto> = HashSet()
                 newInteriorColorsList.addAll(interiorColorsList)
-                val interiorColorSpinnerHolder = InteriorColorSpinnerHolder(context, addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY]!!)
+                val interiorColorSpinnerHolder = InteriorColorSpinnerHolder((addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 interiorColorSpinnerHolder.initModelSpinnerHolderWithValues(newInteriorColorsList)
                 //////////////////////////////////////
                 val interiorMaterialsList = equipment.interiorMaterials
                 val newInteriorMaterialList: MutableSet<InteriorMaterialDto> = HashSet()
                 newInteriorMaterialList.addAll(interiorMaterialsList)
-                val interiorMaterialSpinnerHolder = InteriorMaterialSpinnerHolder(context, addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY]!!)
+                val interiorMaterialSpinnerHolder = InteriorMaterialSpinnerHolder((addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 interiorMaterialSpinnerHolder.initModelSpinnerHolderWithValues(newInteriorMaterialList)
                 //////////////////////////////////////
             }
