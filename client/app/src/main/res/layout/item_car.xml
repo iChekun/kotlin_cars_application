@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_weight="1"
-                android:text="@{car.brand.title}"
+                android:text="@{car.brandTitleAndModelAndDescription}"
                 android:textSize="15sp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_weight="1"
-                android:text="@{car.model.name}"
+                android:text="@{car.releaseYearAndDimensionAndEngineCapacityAndEngineTypeAnd}"
                 android:textSize="15sp" />
 
 

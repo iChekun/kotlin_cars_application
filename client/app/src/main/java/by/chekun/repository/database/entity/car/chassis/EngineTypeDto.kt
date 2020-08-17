@@ -9,6 +9,10 @@ class EngineTypeDto : AbstractDto {
 
     constructor()
 
+    constructor(engineType: String) : super() {
+        this.engineType = engineType
+    }
+
     constructor(id: Long, engineType: String) : super(id) {
         this.engineType = engineType
     }

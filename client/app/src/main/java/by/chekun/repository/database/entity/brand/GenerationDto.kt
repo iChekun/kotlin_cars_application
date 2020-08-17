@@ -21,6 +21,10 @@ class GenerationDto : AbstractDto {
 
     constructor()
 
+    constructor(generation: String) : super() {
+        this.generation = generation
+    }
+
     constructor(
             id: Long,
             generation: String,

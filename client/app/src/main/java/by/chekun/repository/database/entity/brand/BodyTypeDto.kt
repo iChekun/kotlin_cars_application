@@ -11,9 +11,14 @@ class BodyTypeDto : AbstractDto {
 
     constructor()
 
+    constructor(bodyType: String) : super() {
+        this.bodyType = bodyType
+    }
+
+
     constructor(
-        id: Long,
-        bodyType: String
+            id: Long,
+            bodyType: String
     ) : super(id) {
         this.bodyType = bodyType
     }

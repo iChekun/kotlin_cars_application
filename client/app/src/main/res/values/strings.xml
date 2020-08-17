@@ -17,13 +17,13 @@
     <string name="btn_text_delete_user">Delete User</string>
     <string name="text_file_select">Select File to upload</string>
     <string name="btn_text_select_file">Select file</string>
-    <string name="txt_transmission_type">Transmission type</string>
-    <string name="txt_wheel_drive_type">Wheel drive type</string>
-    <string name="txt_body_type">Body type</string>
-    <string name="txt_engine_capacity">Engine capacity</string>
-    <string name="txt_fuel_type">Fuel type</string>
-    <string name="txt_mileage">Mileage</string>
-    <string name="txt_release_year">Release year</string>
+    <string name="txt_transmission_type">Коробка передач</string>
+    <string name="txt_wheel_drive_type">Привод</string>
+    <string name="txt_body_type">Тип кузова</string>
+    <string name="txt_engine_capacity">Объём двигателя</string>
+    <string name="txt_fuel_type">Двигатель</string>
+    <string name="txt_mileage">Пробег</string>
+    <string name="txt_release_year">Год выпуска</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_add_car">Add car</string>
@@ -46,8 +46,27 @@
     <string name="developer_mode_on">prog mod on</string>
     <string name="developer_mode_off">prog mod off</string>
     <string name="button_save_car">save car</string>
-
-
+    <string name="label_car_brand">Марка автомобиля *</string>
+    <string name="label_car_model">Модель *</string>
+    <string name="label_release_year">Год выпуска *</string>
+    <string name="label_body_type">Тип кузова *</string>
+    <string name="label_condition">Состояние *</string>
+    <string name="label_price">Цена *</string>
+    <string name="label_engine_type">Двигатель *</string>
+    <string name="label_description">Текст объявления</string>
+    <string name="labelAdditionalOptions">Дополнительные опции</string>
+    <string name="labelInteriorMaterial">Материал салона -</string>
+    <string name="labelInteriorColor">Цвет салона -</string>
+    <string name="txt_condition">Состояние</string>
+    <string name="labelSafeties">Безопасность</string>
+    <string name="label_generation_spinner">Поколение</string>
+    <string name="label_interior_material">Материал салона *</string>
+    <string name="label_color">Цвет *</string>
+    <string name="label_wheel_drive_type">Привод *</string>
+    <string name="label_interior_color">Цвет салона *</string>
+    <string name="label_mileage">Пробег*</string>
+    <string name="label_transmission">Коробка передач *</string>
+    <string name="label_engine_capacity">Объём двигателя *</string>
 
 
     <!-- -->

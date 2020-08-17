@@ -9,6 +9,10 @@ class InteriorMaterialDto : AbstractDto {
 
     constructor()
 
+    constructor(interiorMaterial: String) : super() {
+        this.interiorMaterial = interiorMaterial
+    }
+
     constructor(id: Long, interiorMaterial: String) : super(id) {
         this.interiorMaterial = interiorMaterial
     }

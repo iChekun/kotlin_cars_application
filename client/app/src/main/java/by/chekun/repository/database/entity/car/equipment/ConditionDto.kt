@@ -9,6 +9,11 @@ class ConditionDto : AbstractDto {
 
     constructor()
 
+    constructor(value: String) : super() {
+        this.value = value
+    }
+
+
     constructor(id: Long, value: String) : super(id) {
         this.value = value
     }

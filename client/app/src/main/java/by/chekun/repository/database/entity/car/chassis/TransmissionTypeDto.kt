@@ -10,6 +10,10 @@ class TransmissionTypeDto : AbstractDto {
 
     constructor()
 
+    constructor(transmissionType: String) : super() {
+        this.transmissionType = transmissionType
+    }
+
     constructor(id: Long, transmissionType: String) : super(id) {
         this.transmissionType = transmissionType
     }

@@ -9,6 +9,11 @@ class WheelDriveTypeDto : AbstractDto {
 
     constructor()
 
+
+    constructor(wheelDriveType: String) : super() {
+        this.wheelDriveType = wheelDriveType
+    }
+
     constructor(id: Long, wheelDriveType: String) : super(id) {
         this.wheelDriveType = wheelDriveType
     }

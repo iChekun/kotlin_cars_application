@@ -1,9 +1,13 @@
 package by.chekun.presentation.activities.add
 
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.InputFilter
+import android.text.Spanned
+import android.text.TextWatcher
+import android.view.Menu
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -12,14 +16,19 @@ import by.chekun.di.component.ViewModelComponent
 import by.chekun.domain.AddCarViewModel
 import by.chekun.presentation.activities.main.MainActivity
 import by.chekun.presentation.base.BaseActivity
-import by.chekun.repository.database.entity.brand.BrandResponse
-import by.chekun.repository.database.pojo.CarRequest
-import kotlinx.android.synthetic.main.activity_add_car.*
+import by.chekun.repository.database.entity.brand.ReleaseYearDto
+import by.chekun.repository.database.entity.car.CarRequestDto
+import by.chekun.repository.database.entity.car.MileageDto
+import by.chekun.repository.database.entity.car.view.CarDto
+import by.chekun.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import javax.inject.Inject
+import kotlin.collections.HashMap
 
 
 class AddCarActivity : BaseActivity() {
@@ -27,7 +36,9 @@ class AddCarActivity : BaseActivity() {
     var viewModel: AddCarViewModel? = null
         @Inject set
 
-    var et_model: EditText? = null
+    private var saveButton: Button? = null
+    private val addActivitySpinners: MutableMap<String, Spinner> = HashMap()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,84 +47,117 @@ class AddCarActivity : BaseActivity() {
         Objects.requireNonNull(supportActionBar)?.setDisplayHomeAsUpEnabled(true)
 
 
-        et_model = findViewById(R.id.model_text_field)
+        saveButton = findViewById(R.id.car_save_button)
+        //saveButton?.isEnabled = false
 
-        addBrandSpinner()
+        createSpinnersMap()
+        SpinnerHolder(viewModel, addActivitySpinners).initSpinners(this)
+
+        val priceEditText = findViewById<EditText>(R.id.txt_price_value)
+        priceEditText.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(10, 2))
     }
 
-    private fun addBrandSpinner() {
 
-        val context = this
-        val call = viewModel?.getBrands()
+    private fun createSpinnersMap() {
+        val brandSpinner: Spinner = findViewById(R.id.brand_spinner)
+        val modelSpinner: Spinner = findViewById(R.id.model_spinner)
+        val releaseYearSpinner: Spinner = findViewById(R.id.release_year_spinner)
+        val generationSpinner: Spinner = findViewById(R.id.generation_spinner)
+        val bodyTypeSpinner: Spinner = findViewById(R.id.body_type_spinner)
 
-        call?.enqueue(object : Callback<BrandResponse> {
+        val conditionSpinner: Spinner = findViewById(R.id.condition_spinner)
+        val engineSpinner: Spinner = findViewById(R.id.engine_spinner)
 
-            override fun onResponse(call: Call<BrandResponse>, response: Response<BrandResponse>) {
+        val transmissionSpinner: Spinner = findViewById(R.id.transmission_type_spinner)
+        val wheelDriveTypeSpinner: Spinner = findViewById(R.id.wheel_drive_spinner)
+        val colorSpinner: Spinner = findViewById(R.id.color_spinner)
+        val interiorColorSpinner: Spinner = findViewById(R.id.interior_color_spinner)
+        val interiorMaterialSpinner: Spinner = findViewById(R.id.interior_material_spinner)
 
-                val spinner: Spinner = findViewById(R.id.brand_spinner)
+        addActivitySpinners[BRAND_SPINNER_KEY] = brandSpinner
+        addActivitySpinners[MODEL_SPINNER_KEY] = modelSpinner
+        addActivitySpinners[RELEASE_YEAR_SPINNER_KEY] = releaseYearSpinner
+        addActivitySpinners[BODY_TYPE_SPINNER_KEY] = bodyTypeSpinner
+        addActivitySpinners[GENERATION_SPINNER_KEY] = generationSpinner
 
-                val responseList = response.body()?.brands
+        addActivitySpinners[CONDITION_SPINNER_KEY] = conditionSpinner
+        addActivitySpinners[ENGINE_TYPE_SPINNER_KEY] = engineSpinner
 
-                val adapter = BrandArrayAdapter(context,
-                        android.R.layout.simple_spinner_dropdown_item,
-                        responseList!!.toTypedArray()
-                )
-                val brandSpinnerListener = BrandSpinnerListener(adapter, spinner)
-                brandSpinnerListener.configureSpinner()
-            }
-
-
-            override fun onFailure(call: Call<BrandResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-            }
-        })
+        addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY] = transmissionSpinner
+        addActivitySpinners[WHEEL_DRIVE_TYPE_SPINNER_KEY] = wheelDriveTypeSpinner
+        addActivitySpinners[COLOR_TYPE_SPINNER_KEY] = colorSpinner
+        addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY] = interiorColorSpinner
+        addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY] = interiorMaterialSpinner
     }
+
 
 
     fun clickSaveCar(view: View?) {
 
-        val model: String = et_model?.text.toString()
-        val generation: String = R.id.generation_text_field.toString()
-        val mileage: Double = R.id.mileage_text_field.toDouble()
-        val bodyType: String = body_type_text_field.text.toString()
-        val transmissionType: String = transmission_type_text_field.text.toString()
-        val fuelType: String = fuel_type_text_field.text.toString()
-        val wheelDriveType: String = wheel_drive_type_text_field.text.toString()
-        val engineCapacity: Double = R.id.engine_capacity_text_field.toDouble()
-        val releaseYear: Int = R.id.release_year_text_field.toInt()
-        val price: Double = R.id.price_text_fild.toDouble()
-        val description: String = ""
-        val mySpinner = findViewById<View>(R.id.brand_spinner) as Spinner
-        val brandId: String = mySpinner.selectedItem.toString()
-
-        println(brandId)
+        val brandId: Long = addActivitySpinners[BRAND_SPINNER_KEY]!!.selectedItemId
+        val modelId: Long = addActivitySpinners[MODEL_SPINNER_KEY]!!.selectedItemId
+        val generationId: Long = addActivitySpinners[GENERATION_SPINNER_KEY]!!.selectedItemId
+        val bodyTypeId: Long = addActivitySpinners[BODY_TYPE_SPINNER_KEY]!!.selectedItemId
+        val transmissionTypeId: Long = addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY]!!.selectedItemId
+        val engineTypeId: Long = addActivitySpinners[ENGINE_TYPE_SPINNER_KEY]!!.selectedItemId
+        val engineCapacity: Double = R.id.txt_engine_capacity.toDouble()
+        val wheelDriveTypeId: Long = addActivitySpinners[WHEEL_DRIVE_TYPE_SPINNER_KEY]!!.selectedItemId
+        val colorId: Long = addActivitySpinners[COLOR_TYPE_SPINNER_KEY]!!.selectedItemId
+        val conditionId: Long = addActivitySpinners[CONDITION_SPINNER_KEY]!!.selectedItemId
+        val interiorColorId: Long = addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY]!!.selectedItemId
+        val interiorMaterialId: Long = addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY]!!.selectedItemId
+        val releaseYear: Int = (addActivitySpinners[RELEASE_YEAR_SPINNER_KEY]!!.selectedItem as ReleaseYearDto).releaseYear
 
 
-        val car = CarRequest(model, generation, mileage, bodyType, transmissionType, fuelType, wheelDriveType, engineCapacity, releaseYear, price, description, 1)
+        val priceEditText = findViewById<EditText>(R.id.txt_price_value)
+        val price: Double = priceEditText.text.toString().toDouble()
 
-        println(car.toString())
+        val mileageEditText = findViewById<EditText>(R.id.txt_mileage)
+        val mileageDistance: Int = mileageEditText.text.toString().toInt()
+        val mileage = MileageDto()
+        mileage.mileage = mileageDistance
 
-        viewModel?.saveCar(car)?.enqueue(object : Callback<CarRequest> {
+        val description: String = R.id.txt_description_value.toString()
 
-            override fun onResponse(call: Call<CarRequest>?, response: Response<CarRequest>) {
+        val carRequestDto = CarRequestDto()
+        carRequestDto.brandId = brandId
+        carRequestDto.modelId = modelId
+        carRequestDto.generationId = generationId
+        carRequestDto.bodyTypeId = bodyTypeId
+        carRequestDto.transmissionTypeId = transmissionTypeId
+        carRequestDto.engineTypeId = engineTypeId
+        carRequestDto.engineCapacity = engineCapacity
+        carRequestDto.wheelDriveTypeId = wheelDriveTypeId
+        carRequestDto.colorId = colorId
+        carRequestDto.conditionId = conditionId
+        carRequestDto.interiorColorId = interiorColorId
+        carRequestDto.interiorMaterialId = interiorMaterialId
+        carRequestDto.releaseYear = releaseYear
+        carRequestDto.price = price
+        carRequestDto.mileage = mileage
+        carRequestDto.description = description
+
+
+        //val car = CarRequest(model, generation, mileage, bodyType, transmissionType, fuelType, wheelDriveType, engineCapacity, releaseYear, price, description, 1)
+
+        //println(car.toString())
+
+        viewModel?.saveCar(carRequestDto)?.enqueue(object : Callback<CarDto> {
+
+            override fun onResponse(call: Call<CarDto>?, response: Response<CarDto>) {
 
                 if (response.isSuccessful) {
-                    Log.i(ContentValues.TAG, "post submitted to API." + response.body().toString())
 
-                    showToast("Car added")
+                    showToast("CarDto added")
                     showMainActivity()
                 } else {
-
                     showToast("Can`t create car! Fill fields according with pattern.")
-                    Log.i(ContentValues.TAG, "Mistake onResponse! ." + response.body().toString())
                 }
 
             }
 
-            override fun onFailure(call: Call<CarRequest>?, t: Throwable?) {
-
+            override fun onFailure(call: Call<CarDto>?, t: Throwable?) {
                 showToast("Mistake throwable!")
-                Log.i(ContentValues.TAG, "Mistake throwable! ." + t.toString())
             }
         })
 
@@ -130,6 +174,34 @@ class AddCarActivity : BaseActivity() {
 
     override fun injectDependency(component: ViewModelComponent) {
         component.inject(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_new_car, menu)
+        // Action View
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
+        //SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        // Configure the search info and add any event listeners
+        //return super.onCreateOptionsMenu(menu);
+        return true
+    }
+
+
+}
+
+
+class DecimalDigitsInputFilter(digitsBeforeZero: Int, digitsAfterZero: Int) : InputFilter {
+
+    private val mPattern: Pattern = Pattern.compile("[0-9]{0," + (digitsBeforeZero - 1) + "}+((\\.[0-9]{0," + (digitsAfterZero - 1) + "})?)||(\\.)?")
+
+    override fun filter(source: CharSequence,
+                        start: Int,
+                        end: Int,
+                        dest: Spanned,
+                        dstart: Int,
+                        dend: Int): CharSequence? {
+        val matcher: Matcher = mPattern.matcher(dest)
+        return if (!matcher.matches()) "" else null
     }
 
 }

@@ -15,6 +15,10 @@ class ModelDto : AbstractDto {
 
     constructor()
 
+    constructor(name: String) : super() {
+        this.name = name
+    }
+
     constructor(id: Long, name: String) : super(id) {
         this.name = name
     }

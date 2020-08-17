@@ -12,7 +12,6 @@ import by.chekun.repository.database.entity.car.equipment.SafetyDto
 import by.chekun.repository.database.entity.car.interior.InteriorColorDto
 import by.chekun.repository.database.entity.car.interior.InteriorDto
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
-import java.time.LocalDateTime
 
 
 class CarDto() : AbstractDto() {
@@ -61,6 +60,28 @@ class CarDto() : AbstractDto() {
 
 
     fun getPriceString(): String {
-        return price.toString()
+        return "$price руб."
     }
+
+
+    fun getBrandTitleAndModelAndDescription(): String {
+        return brand.title + " " + model.name + " " + generation.generation
+    }
+
+    fun getReleaseYearAndDimensionAndEngineCapacityAndEngineTypeAnd(): String {
+        return releaseYear.releaseYear.toString() + "г, " + mileage.mileage + " " + mileage.measurement + ", " + engineCapacity + "л, " + engineType.engineType + ", " + transmissionType.transmissionType
+    }
+
+    fun getIdString(): String {
+        return id.toString()
+    }
+
+    fun getUpdatedDate(): String {
+        return "Обновлено $dateOfModification"
+    }
+
+    fun getEngineCapacityString(): String {
+        return "$engineCapacity см3"
+    }
+
 }

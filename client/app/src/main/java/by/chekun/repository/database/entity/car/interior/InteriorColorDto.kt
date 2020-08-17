@@ -9,6 +9,10 @@ class InteriorColorDto : AbstractDto {
 
     constructor()
 
+    constructor(interiorColor: String) : super() {
+        this.interiorColor = interiorColor
+    }
+
     constructor(id: Long, interiorColor: String) : super(id) {
         this.interiorColor = interiorColor
     }

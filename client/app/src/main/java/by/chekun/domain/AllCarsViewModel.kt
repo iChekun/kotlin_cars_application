@@ -26,7 +26,7 @@ class AllCarsViewModel(application: Application, private val mRepository: AppRep
 //        val price: Double = 15.0
 //        val description: String = ""
 //
-//        val car = Car(1, model, generation, mileage, bodyType, transmissionType, fuelType, wheelDriveType, engineCapacity, releaseYear, price, description, Brand(""))
+//        val car = CarDto(1, model, generation, mileage, bodyType, transmissionType, fuelType, wheelDriveType, engineCapacity, releaseYear, price, description, Brand(""))
 //
 //        liveDataItems.value = listOf(car)
     }

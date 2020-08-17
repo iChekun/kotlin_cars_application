@@ -9,6 +9,10 @@ class ColorDto : AbstractDto {
 
     constructor()
 
+    constructor(color: String) : super() {
+        this.color = color
+    }
+
     constructor(id: Long, color: String) : super(id) {
         this.color = color
     }

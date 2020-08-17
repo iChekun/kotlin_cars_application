@@ -15,6 +15,10 @@ class BrandDto : AbstractDto {
 
     constructor()
 
+    constructor(title: String) : super() {
+        this.title = title
+    }
+
     constructor(id: Long, title: String) : super(id) {
         this.title = title
     }

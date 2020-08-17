@@ -1,10 +1,12 @@
 package by.chekun.repository
 
 import by.chekun.repository.database.AppDatabase
-import by.chekun.repository.database.entity.Car
 import by.chekun.repository.database.entity.brand.BrandResponse
+import by.chekun.repository.database.entity.car.CarRequestDto
+import by.chekun.repository.database.entity.car.chassis.ChassisComponent
+import by.chekun.repository.database.entity.car.equipment.EquipmentComponent
+import by.chekun.repository.database.entity.car.interior.InteriorComponent
 import by.chekun.repository.database.entity.car.view.CarDto
-import by.chekun.repository.database.pojo.CarRequest
 import by.chekun.repository.server.ServerCommunicator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,18 +26,18 @@ class AppRepository(private val serverCommunicator: ServerCommunicator, private 
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getCar(id: Long): Single<Car> {
+    fun getCar(id: Long): Single<CarDto> {
         return serverCommunicator.getCar(id)
-                .map {
-                    val user = mainDatabase.carDao().getById(id)
-                    user
-                }
+//                .map {
+//                    //val user = mainDatabase.carDao().getById(id)
+//                  //  user
+//                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     }
 
-    fun saveCar(car: CarRequest): Call<CarRequest> {
+    fun saveCar(car: CarRequestDto): Call<CarDto> {
         return serverCommunicator.saveCar(car)
     }
 
@@ -43,5 +45,16 @@ class AppRepository(private val serverCommunicator: ServerCommunicator, private 
         return serverCommunicator.getBrands()
     }
 
+    fun getEquipment(): Call<EquipmentComponent>? {
+        return serverCommunicator.getEquipment()
+    }
+
+    fun getChassis(): Call<ChassisComponent> {
+        return serverCommunicator.getChassis()
+    }
+
+    fun getInterior(): Call<InteriorComponent> {
+        return serverCommunicator.getInterior()
+    }
 
 }

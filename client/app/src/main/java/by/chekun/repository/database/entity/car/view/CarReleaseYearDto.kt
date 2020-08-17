@@ -12,4 +12,8 @@ class CarReleaseYearDto : AbstractDto {
     constructor(id: Long, releaseYear: Int) : super(id) {
         this.releaseYear = releaseYear
     }
+
+    fun getReleaseYearString(): String {
+        return releaseYear.toString()
+    }
 }

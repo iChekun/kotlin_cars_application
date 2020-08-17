@@ -11,7 +11,7 @@ import by.chekun.databinding.CarDetailBinding
 import by.chekun.di.component.ViewModelComponent
 import by.chekun.domain.SingleCarViewModel
 import by.chekun.presentation.base.BaseActivity
-import by.chekun.repository.database.entity.Car
+import by.chekun.repository.database.entity.car.view.CarDto
 
 
 import java.util.*
@@ -38,7 +38,7 @@ class DetailActivity : BaseActivity() {
         viewModel?.getLiveDataItem()?.observe(this, Observer { it?.let { initDataBinding(it) } })
     }
 
-    private fun initDataBinding(car: Car) {
+    private fun initDataBinding(car: CarDto) {
         binding.car = car
         initActionBar("${car.model} ${car.generation}")
     }

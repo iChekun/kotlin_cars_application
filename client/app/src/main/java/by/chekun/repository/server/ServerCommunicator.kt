@@ -1,9 +1,13 @@
 package by.chekun.repository.server
 
 import android.util.Log
-import by.chekun.repository.database.entity.Car
 import by.chekun.repository.database.entity.brand.BrandResponse
+import by.chekun.repository.database.entity.car.CarRequestDto
 import by.chekun.repository.database.entity.car.CarResponse
+import by.chekun.repository.database.entity.car.chassis.ChassisComponent
+import by.chekun.repository.database.entity.car.equipment.EquipmentComponent
+import by.chekun.repository.database.entity.car.interior.InteriorComponent
+import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.repository.database.pojo.CarRequest
 import io.reactivex.ObservableTransformer
 import io.reactivex.Single
@@ -28,17 +32,29 @@ class ServerCommunicator(private val mService: ApiService) {
                 .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message.toString()) }
     }
 
-    fun getCar(id: Long): Single<Car> {
+    fun getCar(id: Long): Single<CarDto> {
         return mService.getCarById(id).compose(singleTransformer())
     }
 
-    fun saveCar(car: CarRequest): Call<CarRequest> {
+    fun saveCar(car: CarRequestDto): Call<CarDto> {
         return mService.saveCar(car)
     }
 
 
     fun getBrands(): Call<BrandResponse>? {
         return mService.getBrands()
+    }
+
+    fun getEquipment(): Call<EquipmentComponent>? {
+        return mService.getEquipment()
+    }
+
+    fun getChassis(): Call<ChassisComponent> {
+        return mService.getChassis()
+    }
+
+    fun getInterior(): Call<InteriorComponent> {
+        return mService.getInterior()
     }
 
 

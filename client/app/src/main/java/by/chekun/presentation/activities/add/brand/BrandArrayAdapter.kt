@@ -1,4 +1,4 @@
-package by.chekun.presentation.activities.add
+package by.chekun.presentation.activities.add.brand
 
 import android.content.Context
 import android.graphics.Color
@@ -30,7 +30,6 @@ class BrandArrayAdapter(
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-
         val label = super.getView(position, convertView, parent) as TextView
         label.setTextColor(Color.BLACK)
         label.text = values[position].title
@@ -38,12 +37,11 @@ class BrandArrayAdapter(
     }
 
     override fun getDropDownView(position: Int, convertView: View?,
-                                 parent: ViewGroup?): View {
+                                 parent: ViewGroup): View {
         val label = super.getDropDownView(position, convertView, parent) as TextView
         label.setTextColor(Color.BLACK)
         label.text = values[position].title
         return label
     }
-
 
 }
