@@ -30,7 +30,6 @@ class SafetiesMultipleSpinnerHolder(private val safetiesMultipleSpinner: MultiSp
         safetiesMultipleSpinner.setItems(list, -1) { items ->
             for (i in items.indices) {
                 if (items[i].isSelected) {
-                    println(items[i].id)
                 }
             }
         }

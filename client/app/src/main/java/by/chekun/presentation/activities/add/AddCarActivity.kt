@@ -17,13 +17,9 @@ import by.chekun.presentation.base.BaseActivity
 import by.chekun.repository.database.entity.brand.ReleaseYearDto
 import by.chekun.repository.database.entity.car.CarRequestDto
 import by.chekun.repository.database.entity.car.MileageDto
-import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.utils.*
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import com.androidbuts.multispinnerfilter.SingleSpinner
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -79,8 +75,8 @@ class AddCarActivity : BaseActivity() {
         val interiorColorSpinner: SingleSpinner = findViewById(R.id.interior_color_spinner)
         val interiorMaterialSpinner: SingleSpinner = findViewById(R.id.interior_material_spinner)
 
-        val safetiesMultipleSpinner: MultiSpinnerSearch = findViewById(R.id.searchMultiSpinnerUnlimited)
-
+        val safetiesMultipleSpinner: MultiSpinnerSearch = findViewById(R.id.safeties_spinner)
+        val interiorMultipleSpinner: MultiSpinnerSearch = findViewById(R.id.interior_spinner)
 
         addActivitySpinners[BRAND_SPINNER_KEY] = brandSpinner
         addActivitySpinners[MODEL_SPINNER_KEY] = modelSpinner
@@ -90,7 +86,6 @@ class AddCarActivity : BaseActivity() {
 
         addActivitySpinners[CONDITION_SPINNER_KEY] = conditionSpinner
 
-
         addActivitySpinners[ENGINE_TYPE_SPINNER_KEY] = engineSpinner
 
         addActivitySpinners[TRANSMISSION_TYPE_SPINNER_KEY] = transmissionSpinner
@@ -99,6 +94,8 @@ class AddCarActivity : BaseActivity() {
         addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY] = interiorColorSpinner
         addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY] = interiorMaterialSpinner
 
+
+        addActivitySpinners[INTERIOR_MULTIPLE_SPINNER_KEY] = interiorMultipleSpinner
         addActivitySpinners[SAFETIES_MULTIPLE_SPINNER_KEY] = safetiesMultipleSpinner
     }
 
@@ -118,6 +115,7 @@ class AddCarActivity : BaseActivity() {
         val interiorMaterialId: Long = addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY]!!.selectedItemId
         val releaseYear: Int = (addActivitySpinners[RELEASE_YEAR_SPINNER_KEY]!!.selectedItem as ReleaseYearDto).releaseYear
 
+        val safetyIds = (addActivitySpinners[SAFETIES_MULTIPLE_SPINNER_KEY] as MultiSpinnerSearch).selectedIds
 
         val priceEditText = findViewById<EditText>(R.id.txt_price_value)
         val price: Double = priceEditText.text.toString().toDouble()
@@ -146,6 +144,7 @@ class AddCarActivity : BaseActivity() {
         carRequestDto.releaseYear = releaseYear
         carRequestDto.price = price
         carRequestDto.mileage = mileage
+        //carRequestDto.
 
         val descriptionEditText = findViewById<EditText>(R.id.txt_description_value)
         carRequestDto.description = descriptionEditText.text.toString()

@@ -16,3 +16,4 @@ const val INTERIOR_COLOR_TYPE_SPINNER_KEY = "interiorColorSpinner"
 const val INTERIOR_MATERIAL_TYPE_SPINNER_KEY = "interiorMaterialSpinner"
 
 const val SAFETIES_MULTIPLE_SPINNER_KEY = "safetiesMultipleSpinner"
+const val INTERIOR_MULTIPLE_SPINNER_KEY = "interiorMultipleSpinner"

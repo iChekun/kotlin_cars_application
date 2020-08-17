@@ -14,6 +14,7 @@ import by.chekun.presentation.activities.add.equipment.ConditionSpinnerHolder
 import by.chekun.presentation.activities.add.equipment.SafetiesMultipleSpinnerHolder
 import by.chekun.presentation.activities.add.interior.InteriorColorSpinnerHolder
 import by.chekun.presentation.activities.add.interior.InteriorMaterialSpinnerHolder
+import by.chekun.presentation.activities.add.interior.InteriorSpinnerHolder
 import by.chekun.repository.database.entity.brand.BrandDto
 import by.chekun.repository.database.entity.brand.BrandResponse
 import by.chekun.repository.database.entity.car.chassis.ChassisComponent
@@ -26,8 +27,10 @@ import by.chekun.repository.database.entity.car.equipment.EquipmentComponent
 import by.chekun.repository.database.entity.car.equipment.SafetyDto
 import by.chekun.repository.database.entity.car.interior.InteriorColorDto
 import by.chekun.repository.database.entity.car.interior.InteriorComponent
+import by.chekun.repository.database.entity.car.interior.InteriorDto
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
 import by.chekun.utils.*
+import com.androidbuts.multispinnerfilter.MultiSpinner
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import com.androidbuts.multispinnerfilter.SingleSpinner
 import retrofit2.Call
@@ -140,6 +143,11 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
                 val interiorMaterialSpinnerHolder = InteriorMaterialSpinnerHolder((addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY] as SingleSpinner?)!!)
                 interiorMaterialSpinnerHolder.initModelSpinnerHolderWithValues(newInteriorMaterialList)
                 //////////////////////////////////////
+                val interiorList = equipment.interior
+                val newInteriorList: MutableSet<InteriorDto> = HashSet()
+                newInteriorList.addAll(interiorList)
+                val interiorSpinnerHolder = InteriorSpinnerHolder((addActivitySpinners[INTERIOR_MULTIPLE_SPINNER_KEY] as MultiSpinnerSearch?)!!)
+                interiorSpinnerHolder.initModelSpinnerHolderWithValues(newInteriorList)
             }
 
 

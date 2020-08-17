@@ -439,11 +439,18 @@
                 </RelativeLayout>
 
                 <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
-                    android:id="@+id/searchMultiSpinnerUnlimited"
+                    android:id="@+id/safeties_spinner"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     app:hintText="Безопасность" />
+
+                <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                    android:id="@+id/interior_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:hintText="Интерьер" />
 
                 <Button
                     android:id="@+id/car_save_button"
