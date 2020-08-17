@@ -11,6 +11,7 @@ import by.chekun.presentation.activities.add.chassis.TransmissionSpinnerHolder
 import by.chekun.presentation.activities.add.chassis.WheelDriveSpinnerHolder
 import by.chekun.presentation.activities.add.equipment.ColorSpinnerHolder
 import by.chekun.presentation.activities.add.equipment.ConditionSpinnerHolder
+import by.chekun.presentation.activities.add.equipment.SafetiesMultipleSpinnerHolder
 import by.chekun.presentation.activities.add.interior.InteriorColorSpinnerHolder
 import by.chekun.presentation.activities.add.interior.InteriorMaterialSpinnerHolder
 import by.chekun.repository.database.entity.brand.BrandDto
@@ -22,10 +23,12 @@ import by.chekun.repository.database.entity.car.chassis.WheelDriveTypeDto
 import by.chekun.repository.database.entity.car.equipment.ColorDto
 import by.chekun.repository.database.entity.car.equipment.ConditionDto
 import by.chekun.repository.database.entity.car.equipment.EquipmentComponent
+import by.chekun.repository.database.entity.car.equipment.SafetyDto
 import by.chekun.repository.database.entity.car.interior.InteriorColorDto
 import by.chekun.repository.database.entity.car.interior.InteriorComponent
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
 import by.chekun.utils.*
+import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,6 +41,7 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
         initEquipment(context)
         initChassis(context)
         initInterior(context)
+
     }
 
 
@@ -98,6 +102,11 @@ class SpinnerHolder(private val viewModel: AddCarViewModel?,
                 val colorSpinnerHolder = ColorSpinnerHolder(context, addActivitySpinners[COLOR_TYPE_SPINNER_KEY]!!)
                 colorSpinnerHolder.initModelSpinnerHolderWithValues(newColorList)
                 //////////////////////////////////////
+                val safetiesList = equipment.safeties
+                val newSafetiesList: MutableSet<SafetyDto> = HashSet()
+                newSafetiesList.addAll(safetiesList)
+                SafetiesMultipleSpinnerHolder(addActivitySpinners[SAFETIES_MULTIPLE_SPINNER_KEY] as MultiSpinnerSearch).initModelSpinnerHolderWithValues(newSafetiesList)
+
             }
 
 

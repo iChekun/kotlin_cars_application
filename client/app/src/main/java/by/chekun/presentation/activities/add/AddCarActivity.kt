@@ -1,10 +1,8 @@
 package by.chekun.presentation.activities.add
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.InputFilter
 import android.text.Spanned
-import android.text.TextWatcher
 import android.view.Menu
 import android.view.View
 import android.widget.Button
@@ -21,6 +19,7 @@ import by.chekun.repository.database.entity.car.CarRequestDto
 import by.chekun.repository.database.entity.car.MileageDto
 import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.utils.*
+import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,7 +51,10 @@ class AddCarActivity : BaseActivity() {
 
         createSpinnersMap()
         SpinnerHolder(viewModel, addActivitySpinners).initSpinners(this)
+        initDigitsFilter()
+    }
 
+    private fun initDigitsFilter() {
         val priceEditText = findViewById<EditText>(R.id.txt_price_value)
         priceEditText.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(10, 2))
     }
@@ -74,6 +76,9 @@ class AddCarActivity : BaseActivity() {
         val interiorColorSpinner: Spinner = findViewById(R.id.interior_color_spinner)
         val interiorMaterialSpinner: Spinner = findViewById(R.id.interior_material_spinner)
 
+        val safetiesMultipleSpinner: MultiSpinnerSearch = findViewById(R.id.searchMultiSpinnerUnlimited)
+
+
         addActivitySpinners[BRAND_SPINNER_KEY] = brandSpinner
         addActivitySpinners[MODEL_SPINNER_KEY] = modelSpinner
         addActivitySpinners[RELEASE_YEAR_SPINNER_KEY] = releaseYearSpinner
@@ -88,8 +93,9 @@ class AddCarActivity : BaseActivity() {
         addActivitySpinners[COLOR_TYPE_SPINNER_KEY] = colorSpinner
         addActivitySpinners[INTERIOR_COLOR_TYPE_SPINNER_KEY] = interiorColorSpinner
         addActivitySpinners[INTERIOR_MATERIAL_TYPE_SPINNER_KEY] = interiorMaterialSpinner
-    }
 
+        addActivitySpinners[SAFETIES_MULTIPLE_SPINNER_KEY] = safetiesMultipleSpinner
+    }
 
 
     fun clickSaveCar(view: View?) {
