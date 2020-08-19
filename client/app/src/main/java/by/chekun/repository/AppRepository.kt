@@ -11,6 +11,9 @@ import by.chekun.repository.server.ServerCommunicator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 
 
@@ -55,6 +58,12 @@ class AppRepository(private val serverCommunicator: ServerCommunicator, private 
 
     fun getInterior(): Call<InteriorComponent> {
         return serverCommunicator.getInterior()
+    }
+
+
+
+    fun postImage(carId: Long, picture: MultipartBody.Part): Call<CarDto> {
+        return serverCommunicator.postImage(carId, picture)
     }
 
 }

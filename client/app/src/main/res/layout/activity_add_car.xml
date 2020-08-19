@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBlueAccent"
+        android:background="@color/colorWhite"
         android:orientation="vertical"
         tools:context=".presentation.activities.add.AddCarActivity">
 
@@ -23,6 +22,23 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin">
 
+
+                <!--ImageView where image will be set-->
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/movie_photo_height"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bmw_m3_e46" />
+                <!--Button to pick image-->
+                <Button
+                    android:id="@+id/img_pick_btn"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_select_image" />
+
+
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
@@ -32,18 +48,20 @@
                         android:id="@+id/label_brand_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_car_brand" />
+                        android:text="@string/label_car_brand"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:background="@color/colorGrey">
+                    android:background="@color/list_odd">
 
                     <Spinner
                         android:id="@+id/brand_spinner"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content" />
 
                 </RelativeLayout>
@@ -56,13 +74,17 @@
                         android:id="@+id/label_model_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_car_model" />
+                        android:text="@string/label_car_model"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <Spinner
 
@@ -78,15 +100,19 @@
                     android:layout_height="fill_parent">
 
                     <TextView
-                        android:id="@+id/label_release_year_sprinner"
+                        android:id="@+id/label_release_year_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_release_year" />
+                        android:text="@string/label_release_year"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <Spinner
 
@@ -106,12 +132,16 @@
                         android:id="@+id/label_generation_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_generation_spinner" />
+                        android:text="@string/label_generation_spinner"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <Spinner
 
@@ -131,13 +161,17 @@
                         android:id="@+id/label_body_type_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_body_type" />
+                        android:text="@string/label_body_type"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <Spinner
 
@@ -157,20 +191,23 @@
                         android:id="@+id/label_condition_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_condition" />
+                        android:text="@string/label_condition"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/condition_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_condition" />
+                        android:layout_margin="10dp" />
 
                 </RelativeLayout>
 
@@ -183,13 +220,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:labelFor="@id/txt_price_value"
-                        android:text="@string/label_price" />
+                        android:text="@string/label_price"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <EditText
                         android:id="@+id/txt_price_value"
@@ -209,13 +250,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:labelFor="@id/txt_description_value"
-                        android:text="@string/label_description" />
+                        android:text="@string/label_description"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="50dp">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <EditText
                         android:id="@+id/txt_description_value"
@@ -223,7 +268,7 @@
                         android:layout_height="fill_parent"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="Описание" />
+                        android:text="@string/txt_default_car_description" />
                 </RelativeLayout>
 
 
@@ -235,20 +280,23 @@
                         android:id="@+id/label_engine_Type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_engine_type" />
+                        android:text="@string/label_engine_type"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/engine_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_engine_type" />
+                        android:layout_margin="10dp" />
                 </RelativeLayout>
 
 
@@ -261,13 +309,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:labelFor="@id/txt_mileage"
-                        android:text="@string/label_engine_capacity" />
+                        android:text="@string/label_engine_capacity"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <EditText
                         android:id="@+id/txt_engine_capacity"
@@ -288,13 +340,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:labelFor="@id/txt_mileage"
-                        android:text="@string/label_mileage" />
+                        android:text="@string/label_mileage"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <EditText
                         android:id="@+id/txt_mileage"
@@ -313,21 +369,24 @@
                         android:id="@+id/label_transmission_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_transmission" />
+                        android:text="@string/label_transmission"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/transmission_type_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_transmission" />
+                        android:layout_margin="10dp" />
 
                 </RelativeLayout>
 
@@ -340,21 +399,24 @@
                         android:id="@+id/label_wheel_drive_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_wheel_drive_type" />
+                        android:text="@string/label_wheel_drive_type"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/wheel_drive_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_wheel_drive_type" />
+                        android:layout_margin="10dp" />
 
 
                 </RelativeLayout>
@@ -368,20 +430,23 @@
                         android:id="@+id/label_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_color" />
+                        android:text="@string/label_color"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/color_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_color" />
+                        android:layout_margin="10dp" />
 
                 </RelativeLayout>
 
@@ -394,21 +459,23 @@
                         android:id="@+id/label_interior_material"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_interior_material" />
+                        android:text="@string/label_interior_material"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
                     <com.androidbuts.multispinnerfilter.SingleSpinner
                         android:id="@+id/interior_material_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_interior_material" />
+                        android:layout_margin="10dp" />
 
                 </RelativeLayout>
 
@@ -421,7 +488,53 @@
                         android:id="@+id/label_interior_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_interior_color" />
+                        android:text="@string/label_interior_color"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
+
+                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                        android:id="@+id/interior_color_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:id="@+id/label_safeties"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/labelSafeties"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
+
+                    <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                        android:id="@+id/safeties_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+
 
                 </RelativeLayout>
 
@@ -429,32 +542,36 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
-                        android:id="@+id/interior_color_spinner"
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:id="@+id/label_interior"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:hintText="@string/label_interior_color" />
+                        android:text="@string/label_interior"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
-                <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
-                    android:id="@+id/safeties_spinner"
+                <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:hintText="Безопасность" />
+                    android:layout_height="fill_parent"
+                    android:background="@color/list_odd">
 
-                <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
-                    android:id="@+id/interior_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:hintText="Интерьер" />
+                    <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                        android:id="@+id/interior_spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/car_save_button"
-                    style="@style/layout_width_and_height_match"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:onClick="clickSaveCar"
                     android:text="@string/button_save_car" />
 

@@ -27,6 +27,7 @@ class DetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.supportActionBar?.title = "Подробный просмотр"
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         Objects.requireNonNull(supportActionBar)?.setDisplayHomeAsUpEnabled(true)
         initViewModel()

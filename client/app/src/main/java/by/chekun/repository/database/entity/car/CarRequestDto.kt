@@ -1,5 +1,8 @@
 package by.chekun.repository.database.entity.car
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+
 
 class CarRequestDto {
 
@@ -23,9 +26,9 @@ class CarRequestDto {
 
     var interiorMaterialId: Long = 0
 
-//    var safetyIds: List<Long> = ArrayList()
-//
-//    var interiorIds: List<Long> = ArrayList()
+    var safetyIds: List<Long> = ArrayList()
+
+    var interiorIds: List<Long> = ArrayList()
 
     var engineTypeId: Long = 0
 
@@ -39,6 +42,9 @@ class CarRequestDto {
 
     var description: String = ""
 
-//    var picture: ByteArray? = null
+
+    var picture: RequestBody? = null
+   //var picture: MultipartBody.Part? = null
+
 
 }

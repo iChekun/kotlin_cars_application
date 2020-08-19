@@ -28,6 +28,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.supportActionBar?.title = "Каталог авто"
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel?.getAllItems()
         viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } })

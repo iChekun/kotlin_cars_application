@@ -8,12 +8,13 @@ import by.chekun.repository.database.entity.car.chassis.ChassisComponent
 import by.chekun.repository.database.entity.car.equipment.EquipmentComponent
 import by.chekun.repository.database.entity.car.interior.InteriorComponent
 import by.chekun.repository.database.entity.car.view.CarDto
-import by.chekun.repository.database.pojo.CarRequest
 import io.reactivex.ObservableTransformer
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import java.util.concurrent.TimeUnit
@@ -57,6 +58,15 @@ class ServerCommunicator(private val mService: ApiService) {
         return mService.getInterior()
     }
 
+    fun createPartFromString(value: String): RequestBody {
+        return RequestBody.create(
+                okhttp3.MultipartBody.FORM, value)
+
+    }
+
+    fun postImage(carId: Long, picture: MultipartBody.Part): Call<CarDto> {
+        return mService.postImage(carId, picture)
+    }
 
     private fun <T> singleTransformer(): SingleTransformer<T, T> = SingleTransformer {
         it.subscribeOn(Schedulers.io())

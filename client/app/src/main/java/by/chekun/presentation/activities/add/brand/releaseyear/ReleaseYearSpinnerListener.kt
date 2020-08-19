@@ -22,16 +22,9 @@ class ReleaseYearSpinnerListener(dataAdapter: ArrayAdapter<ReleaseYearDto>,
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         if (position != 0) {
-            val item = parent.getItemAtPosition(position).toString()
-            println(parent.selectedItem)
-            Toast.makeText(parent.context, "Year Selected: $item" + " id=" + parent.selectedItem, Toast.LENGTH_LONG).show()
-
-
             val releaseYear = parent.selectedItem as ReleaseYearDto
-
             generationSpinnerHolder.initSpinnerHolderWithValues(releaseYear.generations)
         } else {
-
             generationSpinnerHolder.initSpinnerHolderWithValues(emptySet())
         }
     }

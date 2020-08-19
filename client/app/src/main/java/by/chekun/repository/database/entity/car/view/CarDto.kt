@@ -1,5 +1,7 @@
 package by.chekun.repository.database.entity.car.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import by.chekun.repository.database.entity.AbstractDto
 import by.chekun.repository.database.entity.brand.BodyTypeDto
 import by.chekun.repository.database.entity.car.MileageDto
@@ -12,6 +14,8 @@ import by.chekun.repository.database.entity.car.equipment.SafetyDto
 import by.chekun.repository.database.entity.car.interior.InteriorColorDto
 import by.chekun.repository.database.entity.car.interior.InteriorDto
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
+import java.util.*
+import kotlin.collections.HashSet
 
 
 class CarDto() : AbstractDto() {
@@ -52,7 +56,7 @@ class CarDto() : AbstractDto() {
 
     lateinit var description: String
 
-    var picture: ByteArray? = null
+   // var picture: ByteArray? = null
 
     var dateOfCreation: String? = null
 
@@ -83,5 +87,11 @@ class CarDto() : AbstractDto() {
     fun getEngineCapacityString(): String {
         return "$engineCapacity см3"
     }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun getImageUrl(): String {
+//        return if (Objects.nonNull(picture)) Base64.getEncoder().encodeToString(picture) else ""
+//        //return Base64.getEncoder().encodeToString(picture)
+//    }
 
 }

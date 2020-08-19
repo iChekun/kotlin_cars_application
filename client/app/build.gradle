@@ -18,6 +18,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
+        customDebugType {
+            debuggable true
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -42,7 +46,7 @@ ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':library')
+    implementation project(':multi-spinner-library')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //noinspection GradleCompatible
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -74,7 +78,8 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.15'
     // Logging
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-
+    //validation
+    implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:1.0.1"
 
 
 

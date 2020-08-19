@@ -17,3 +17,8 @@ const val INTERIOR_MATERIAL_TYPE_SPINNER_KEY = "interiorMaterialSpinner"
 
 const val SAFETIES_MULTIPLE_SPINNER_KEY = "safetiesMultipleSpinner"
 const val INTERIOR_MULTIPLE_SPINNER_KEY = "interiorMultipleSpinner"
+
+
+const val PRICE_TEXT_VIEW_KEY = "priceTextView"
+const val ENGINE_CAPACITY_TEXT_VIEW_KEY = "engineCapacityTextView"
+const val MILEAGE_TEXT_VIEW_KEY = "mileageTextView"
