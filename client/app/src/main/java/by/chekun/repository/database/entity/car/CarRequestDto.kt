@@ -1,5 +1,6 @@
 package by.chekun.repository.database.entity.car
 
+import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -20,6 +21,7 @@ class CarRequestDto {
 
     var conditionId: Long = 0
 
+    @SerializedName("mileage")
     lateinit var mileage: MileageDto
 
     var interiorColorId: Long = 0

@@ -312,7 +312,6 @@ class AddCarActivity : BaseActivity() {
             val mileageDistance: Int = mileageEditText.text.toString().toInt()
             val mileage = MileageDto()
             mileage.mileage = mileageDistance
-
             val carRequestDto = CarRequestDto()
             carRequestDto.brandId = brandId
             carRequestDto.modelId = modelId

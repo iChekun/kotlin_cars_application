@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="CarDetailBinding">
 
@@ -44,6 +44,7 @@
                         android:layout_weight="1"
                         android:text="@{car.brandTitleAndModelAndDescription}"
                         android:textColor="@color/colorBlack"
+                        android:textSize="17sp"
                         tools:ignore="NestedWeights" />
 
                     <TextView
@@ -53,7 +54,7 @@
                         android:layout_weight="1"
                         android:text="@{car.idString}"
                         android:textColor="@color/colorBlack"
-                        android:textSize="15sp" />
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/txtCarUpdateDate"
@@ -77,7 +78,9 @@
 
                 <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="372dp">
+                    android:layout_height="372dp"
+                    android:divider="@color/colorBlueAccent"
+                    android:showDividers="middle">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -93,7 +96,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_release_year"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -104,7 +107,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.releaseYear.releaseYearString}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </TableRow>
 
 
@@ -122,7 +125,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_condition"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/tableValueCondition"
@@ -133,7 +136,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.condition.value}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </TableRow>
 
                     <TableRow
@@ -150,7 +153,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_mileage"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView9"
@@ -161,7 +164,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.mileage.mileageString}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </TableRow>
 
                     <TableRow
@@ -178,7 +181,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_fuel_type"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView17"
@@ -189,7 +192,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.engineType.engineType}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </TableRow>
 
@@ -207,7 +210,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_engine_capacity"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView13"
@@ -218,7 +221,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.engineCapacityString}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </TableRow>
 
                     <TableRow
@@ -235,7 +238,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_body_type"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView15"
@@ -246,7 +249,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.bodyType.bodyType}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </TableRow>
 
@@ -264,7 +267,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_wheel_drive_type"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView18"
@@ -275,7 +278,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.wheelDriveType.wheelDriveType}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
                     </TableRow>
 
                     <TableRow
@@ -292,7 +295,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@string/txt_transmission_type"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/textView20"
@@ -303,7 +306,7 @@
                             android:layout_marginBottom="8dp"
                             android:text="@{car.transmissionType.transmissionType}"
                             android:textColor="@color/colorBlack"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </TableRow>
                 </TableLayout>
@@ -385,14 +388,56 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/labelSafeties"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:layout_weight="1"
-                    android:text="@string/label_detail_safeties"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15sp" />
+                    android:layout_height="185dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/labelSafeties"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/label_detail_safeties"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/safeties"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/labelInterior"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/label_car_detail_interior"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/interior"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
 
             </LinearLayout>
 

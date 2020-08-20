@@ -57,7 +57,7 @@
     <string name="labelAdditionalOptions">Выберите дополнительные опции</string>
     <string name="labelInteriorMaterial">Выберите материал салона -</string>
     <string name="labelInteriorColor">Выберите цвет салона -</string>
-    <string name="txt_condition">Выберите состояние</string>
+    <string name="txt_condition">Cостояние</string>
     <string name="labelSafeties">Выберите функции безопасности</string>
     <string name="label_generation_spinner">Выберите поколение</string>
     <string name="label_interior_material">Выберите материал салона *</string>
@@ -74,6 +74,7 @@
     <string name="label_detail_interior_color">Цвет салона</string>
     <string name="label_detail_safeties">Функции безопасности</string>
     <string name="label_detail_additional_options">Дополнительные опции</string>
+    <string name="label_car_detail_interior">Элементы интерьера</string>
 
 
     <!-- -->
