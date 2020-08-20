@@ -5,14 +5,24 @@ import javax.persistence.Embeddable
 
 
 @Embeddable
-class Mileage(mileage: Double, measurement: String) {
+class Mileage {
 
     @Column(name = "mileage", nullable = false)
-    var mileage: Double = 0.0
+    var mileage: Int = 0
 
     @Column(name = "measurement")
     var measurement: String = "km"//измерение
 
+    constructor()
+
+    constructor(mileage: Int) {
+        this.mileage = mileage
+    }
+
+    constructor(mileage: Int, measurement: String) {
+        this.mileage = mileage
+        this.measurement = measurement
+    }
 
 }
 

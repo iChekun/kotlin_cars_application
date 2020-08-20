@@ -1,14 +1,8 @@
 package by.chekun.presentation.activities.add.equipment
 
-import android.content.Context
-import android.graphics.Color
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import by.chekun.repository.database.entity.car.equipment.ConditionDto
-import com.androidbuts.multispinnerfilter.KeyPairBoolData
-import com.androidbuts.multispinnerfilter.SingleSpinner
+import by.chekun.multispinner.KeyPairBoolData
+import by.chekun.multispinner.SingleSpinner
 
 class ConditionSpinnerHolder(private val conditionSingleSpinner: SingleSpinner) {
 

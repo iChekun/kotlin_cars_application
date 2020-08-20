@@ -1,4 +1,5 @@
 --
+#
 insert ignore into body_types(id, body_type)
 values (1, 'купе');
 insert ignore into body_types(id, body_type)
@@ -25,8 +26,6 @@ insert ignore into body_type_generations(body_type_id, generation_id)
 VALUES (3, 1);
 insert ignore into body_type_generations(body_type_id, generation_id)
 VALUES (4, 1);
-insert ignore into body_type_generations(body_type_id, generation_id)
-VALUES (5, 1);
 --
 #bmw releaseYear
 insert ignore into release_years(id, release_year)

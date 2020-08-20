@@ -1,4 +1,4 @@
-package com.androidbuts.multispinnerfilter;
+package by.chekun.multispinner;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.widget.AppCompatSpinner;
+
+import com.androidbuts.multispinnerfilter.R;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

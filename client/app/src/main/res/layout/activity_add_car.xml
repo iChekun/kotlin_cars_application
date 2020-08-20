@@ -203,7 +203,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/condition_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/engine_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -382,7 +382,7 @@
                     android:background="@color/list_odd">
 
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/transmission_type_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -412,7 +412,7 @@
                     android:background="@color/list_odd">
 
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/wheel_drive_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -442,7 +442,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/color_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -471,7 +471,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/interior_material_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -500,7 +500,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.SingleSpinner
+                    <by.chekun.multispinner.SingleSpinner
                         android:id="@+id/interior_color_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -529,7 +529,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                    <by.chekun.multispinner.MultiSpinnerSearch
                         android:id="@+id/safeties_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -558,7 +558,7 @@
                     android:layout_height="fill_parent"
                     android:background="@color/list_odd">
 
-                    <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                    <by.chekun.multispinner.MultiSpinnerSearch
                         android:id="@+id/interior_spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

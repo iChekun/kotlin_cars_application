@@ -24,8 +24,8 @@ import by.chekun.repository.database.entity.car.CarRequestDto
 import by.chekun.repository.database.entity.car.MileageDto
 import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.utils.*
-import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
-import com.androidbuts.multispinnerfilter.SingleSpinner
+import by.chekun.multispinner.MultiSpinnerSearch
+import by.chekun.multispinner.SingleSpinner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

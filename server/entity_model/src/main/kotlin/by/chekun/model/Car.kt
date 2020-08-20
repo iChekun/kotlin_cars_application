@@ -19,52 +19,52 @@ import javax.persistence.*
 @Table(name = "cars")
 class Car : AbstractEntity() {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var brand: Brand
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var model: Model
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var releaseYear: ReleaseYear
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var generation: Generation
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var bodyType: BodyType
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var color: Color
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var condition: Condition
 
     @Embedded
     lateinit var mileage: Mileage
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var interiorColor: InteriorColor
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var interiorMaterial: InteriorMaterial
 
-    @ManyToMany(mappedBy = "carSafeties", fetch = FetchType.LAZY)
-    var safeties: Set<Safety> = HashSet()
+    @ManyToMany(mappedBy = "carSafeties", fetch = FetchType.EAGER)
+    var safeties: MutableSet<Safety> = HashSet()
 
-    @ManyToMany(mappedBy = "carInterior", fetch = FetchType.LAZY)
-    var interior: Set<Interior> = HashSet()
+    @ManyToMany(mappedBy = "carInterior", fetch = FetchType.EAGER)
+    var interior: MutableSet<Interior> = HashSet()
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var engineType: EngineType
 
     @Column(name = "engine_capacity")
     var engineCapacity: Double = 0.0
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var transmissionType: TransmissionType
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     lateinit var wheelDriveType: WheelDriveType
 
     @Column(name = "price")

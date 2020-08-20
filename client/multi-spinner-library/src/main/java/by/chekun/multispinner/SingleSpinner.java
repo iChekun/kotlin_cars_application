@@ -1,4 +1,4 @@
-package com.androidbuts.multispinnerfilter;
+package by.chekun.multispinner;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
+
+import com.androidbuts.multispinnerfilter.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package by.chekun.presentation.activities.add.equipment
 
 import by.chekun.repository.database.entity.car.equipment.SafetyDto
-import com.androidbuts.multispinnerfilter.KeyPairBoolData
-import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+import by.chekun.multispinner.KeyPairBoolData
+import by.chekun.multispinner.MultiSpinnerSearch
 
 class SafetiesMultipleSpinnerHolder(private val safetiesMultipleSpinner: MultiSpinnerSearch) {
 

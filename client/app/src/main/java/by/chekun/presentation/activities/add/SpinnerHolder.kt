@@ -30,9 +30,8 @@ import by.chekun.repository.database.entity.car.interior.InteriorComponent
 import by.chekun.repository.database.entity.car.interior.InteriorDto
 import by.chekun.repository.database.entity.car.interior.InteriorMaterialDto
 import by.chekun.utils.*
-import com.androidbuts.multispinnerfilter.MultiSpinner
-import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
-import com.androidbuts.multispinnerfilter.SingleSpinner
+import by.chekun.multispinner.MultiSpinnerSearch
+import by.chekun.multispinner.SingleSpinner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

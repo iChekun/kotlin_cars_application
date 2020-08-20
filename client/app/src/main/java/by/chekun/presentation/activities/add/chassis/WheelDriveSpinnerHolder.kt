@@ -1,8 +1,8 @@
 package by.chekun.presentation.activities.add.chassis
 
 import by.chekun.repository.database.entity.car.chassis.WheelDriveTypeDto
-import com.androidbuts.multispinnerfilter.KeyPairBoolData
-import com.androidbuts.multispinnerfilter.SingleSpinner
+import by.chekun.multispinner.KeyPairBoolData
+import by.chekun.multispinner.SingleSpinner
 
 class WheelDriveSpinnerHolder(private val singleSpinner: SingleSpinner) {
 

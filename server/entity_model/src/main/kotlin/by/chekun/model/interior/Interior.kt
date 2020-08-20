@@ -19,7 +19,7 @@ class Interior : AbstractEntity {
         joinColumns = [JoinColumn(name = "interior_id")],
         inverseJoinColumns = [JoinColumn(name = "car_id")]
     )
-     var carInterior: List<Car> = ArrayList()
+    var carInterior: MutableList<Car> = ArrayList()
 
 
     constructor()

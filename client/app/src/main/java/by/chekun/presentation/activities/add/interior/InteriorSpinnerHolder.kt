@@ -1,8 +1,8 @@
 package by.chekun.presentation.activities.add.interior
 
 import by.chekun.repository.database.entity.car.interior.InteriorDto
-import com.androidbuts.multispinnerfilter.KeyPairBoolData
-import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+import by.chekun.multispinner.KeyPairBoolData
+import by.chekun.multispinner.MultiSpinnerSearch
 
 
 class InteriorSpinnerHolder(private val multiSpinnerSearch: MultiSpinnerSearch) {

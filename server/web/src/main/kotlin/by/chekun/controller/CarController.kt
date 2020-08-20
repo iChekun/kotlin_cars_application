@@ -3,6 +3,7 @@ package by.chekun.controller
 
 import by.chekun.controller.ControllerHelper.checkBindingResultAndThrowExceptionIfInvalid
 import by.chekun.dto.car.CarRequestDto
+import by.chekun.dto.car.PartialCarUpdate
 import by.chekun.dto.car.view.CarDto
 import by.chekun.dto.helper.PageWrapper
 import by.chekun.dto.helper.Paging
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import javax.validation.Valid
 import javax.validation.constraints.Min
@@ -96,6 +98,20 @@ class CarController(private val carService: CarService) {
                 .buildAndExpand(saved.id).toUri()
         }
         return ResponseEntity(saved, httpHeaders, HttpStatus.CREATED)
+    }
+
+    @PatchMapping("/{id}")
+    fun partialUpdate(
+        @PathVariable("id", required = true) carId: Long,
+        @RequestParam("picture", required = false) picture: MultipartFile?
+    ): ResponseEntity<CarDto?> {
+        val partialCarUpdate = PartialCarUpdate()
+        partialCarUpdate.picture = picture
+
+        println(picture?.name)
+        println(picture?.bytes?.size)
+        val car = carService.partialUpdate(carId, partialCarUpdate)
+        return ResponseEntity.ok(car)
     }
 
     @DeleteMapping("/{id}")

@@ -12,16 +12,13 @@ class Safety : AbstractEntity {
     @Column(name = "safety", nullable = false, unique = true)
     lateinit var safety: String
 
-
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.MERGE])
     @JoinTable(
         name = "car_safeties",
         joinColumns = [JoinColumn(name = "safety_id")],
         inverseJoinColumns = [JoinColumn(name = "car_id")]
     )
-     var carSafeties: List<Car> = ArrayList()
-
+     var carSafeties: MutableList<Car> = ArrayList()
 
 
     constructor()

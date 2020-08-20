@@ -1,4 +1,4 @@
-package com.androidbuts.multispinnerfilter;
+package by.chekun.multispinner;
 
 import java.util.List;
 

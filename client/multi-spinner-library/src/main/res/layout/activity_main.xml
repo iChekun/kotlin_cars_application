@@ -3,13 +3,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.androidbuts.multispinnerfilter.MultiSpinner
+    <by.chekun.multispinner.MultiSpinner
         android:id="@+id/simpleMultiSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp" />
 
-    <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+    <by.chekun.multispinner.MultiSpinnerSearch
          android:id="@+id/searchMultiSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

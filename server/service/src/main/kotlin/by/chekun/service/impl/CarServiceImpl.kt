@@ -2,6 +2,7 @@ package by.chekun.service.impl
 
 
 import by.chekun.dto.car.CarRequestDto
+import by.chekun.dto.car.PartialCarUpdate
 import by.chekun.dto.car.view.CarDto
 import by.chekun.dto.helper.PageWrapper
 import by.chekun.dto.helper.Paging
@@ -10,8 +11,6 @@ import by.chekun.dto.search.CarSearchCriteria
 import by.chekun.exception.ResourceNotFoundException
 import by.chekun.model.Car
 import by.chekun.model.Mileage
-import by.chekun.model.equipment.Safety
-import by.chekun.model.interior.Interior
 import by.chekun.repository.brand.*
 import by.chekun.repository.car.CarRepository
 import by.chekun.repository.chassis.EngineTypeRepository
@@ -30,6 +29,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 
 @Service
@@ -63,17 +63,15 @@ class CarServiceImpl(
 
     @Transactional
     override fun save(carDto: CarRequestDto): CarDto? {
-
-        //resolve all entities
-        val car = getCar(carDto)
-
-        println(car)
-        // val car = carMapper.toEntity(carDto)
-
+        val car = resolveCar(carDto)
         return carMapper.toDto(carRepository.save(car))
     }
 
-    private fun getCar(carDto: CarRequestDto): Car {
+    private fun resolveCar(carDto: CarRequestDto): Car {
+        println("SAVE CAR ___")
+        println(carDto.safetyIds.toString())
+        println(carDto.interiorIds.toString())
+        println(carDto.mileage.mileage)
 
         val brand = brandRepository.findById(carDto.brandId)
             .orElseThrow { throw ResourceNotFoundException("Brand with id= " + carDto.brandId + " does not exist!") }
@@ -91,12 +89,6 @@ class CarServiceImpl(
         val condition = conditionRepository.findById(carDto.conditionId)
             .orElseThrow { throw ResourceNotFoundException("Condition with id " + carDto.modelId + " does not exist!") }
 
-        val safeties: MutableSet<Safety> = HashSet()
-        carDto.safetyIds.forEach { safetyId ->
-            val safety = safetyRepository.findById(safetyId)
-                .orElseThrow { throw ResourceNotFoundException("Safety with id= $safetyId does not exist!") }
-            safeties.add(safety)
-        }
 
         //////
         val engineType = engineTypeRepository.findById(carDto.engineTypeId)
@@ -110,17 +102,9 @@ class CarServiceImpl(
         val interiorColor = interiorColorRepository.findById(carDto.interiorColorId)
             .orElseThrow { throw ResourceNotFoundException("Color with id " + carDto.interiorColorId + " does not exist!") }
 
-        val interior: MutableSet<Interior> = HashSet()
-        carDto.interiorIds.forEach { interiorId ->
-            val interiorEntity = interiorRepository.findById(interiorId)
-                .orElseThrow { throw ResourceNotFoundException("Interior with id= $interiorId does not exist!") }
-            interior.add(interiorEntity)
-        }
-
         val interiorMaterial = interiorMaterialRepository.findById(carDto.interiorMaterialId)
             .orElseThrow { throw ResourceNotFoundException("Interior material with id " + carDto.interiorMaterialId + " does not exist!") }
 
-        val mileage = Mileage(carDto.mileage.mileage, carDto.mileage.measurement)
         val car = Car()
         car.brand = brand
         car.model = model
@@ -129,11 +113,23 @@ class CarServiceImpl(
         car.bodyType = bodyType
         car.color = color
         car.condition = condition
-        car.mileage = mileage
+        car.mileage = Mileage(carDto.mileage.mileage, carDto.mileage.measurement)
         car.interiorColor = interiorColor
         car.interiorMaterial = interiorMaterial
-        car.safeties = safeties
-        car.interior = interior
+
+        carDto.interiorIds.forEach { interiorId ->
+            val interiorEntity = interiorRepository.findById(interiorId)
+                .orElseThrow { throw ResourceNotFoundException("Interior with id= $interiorId does not exist!") }
+            car.interior.add(interiorEntity)
+            interiorEntity.carInterior.add(car)
+        }
+        carDto.safetyIds.forEach { safetyId ->
+            val safety = safetyRepository.findById(safetyId)
+                .orElseThrow { throw ResourceNotFoundException("Safety with id= $safetyId does not exist!") }
+            car.safeties.add(safety)
+            safety.carSafeties.add(car)
+        }
+
         car.engineType = engineType
         car.engineCapacity = carDto.engineCapacity
         car.transmissionType = transmissionType
@@ -141,6 +137,9 @@ class CarServiceImpl(
         car.price = carDto.price
         car.description = carDto.description
 
+        if (Objects.nonNull(carDto.picture)) {
+            car.picture = carDto.picture?.bytes
+        }
         return car
     }
 
@@ -200,6 +199,18 @@ class CarServiceImpl(
         val updatedCar = carRepository.save(carMapper.toEntity(carDto))
 
         return carMapper.toDto(updatedCar!!)
+    }
+
+    @Transactional
+    override fun partialUpdate(carId: Long, partialCarUpdate: PartialCarUpdate): CarDto? {
+        val car = carRepository.findById(carId)
+            .orElseThrow { throw ResourceNotFoundException("Car with id " + carId + "not found!") }
+
+        if (Objects.nonNull(partialCarUpdate.picture)) {
+            car.picture = partialCarUpdate.picture?.bytes
+        }
+
+        return carMapper.toDto(carRepository.save(car))
     }
 
     @Transactional(readOnly = true)

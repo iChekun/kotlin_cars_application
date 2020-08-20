@@ -1,14 +1,23 @@
 package by.chekun.dto.car
 
-import javax.validation.constraints.NotNull
-
 
 class MileageDto {
 
-    @NotNull(message = "Brand must be selected")
-    var mileage: Double = 0.0
+    //@NotNull(message = "Mileage must be set")
+    var mileage: Int = 0
 
     var measurement: String = "km"//измерение
 
+    constructor() {
+    }
+
+    constructor(mileage: Int) {
+        this.mileage = mileage
+    }
+
+    constructor(mileage: Int, measurement: String) {
+        this.mileage = mileage
+        this.measurement = measurement
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.androidbuts.multispinnerfilter;
+package by.chekun.multispinner;
 
 public class KeyPairBoolData {
     private long id;
