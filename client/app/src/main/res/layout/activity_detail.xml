@@ -24,7 +24,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/detailCarImage"
                     android:layout_width="match_parent"
                     android:layout_height="191dp"
                     android:contentDescription="car picture"

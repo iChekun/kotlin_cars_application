@@ -2,8 +2,8 @@ package by.chekun.presentation.base
 
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<VH : androidx.recyclerview.widget.RecyclerView.ViewHolder, M, L>
-    (protected var list: MutableList<M>, protected var clickListener: L) : androidx.recyclerview.widget.RecyclerView.Adapter<VH>() {
+abstract class BaseAdapter<VH : RecyclerView.ViewHolder, M, L>
+    (protected var list: MutableList<M>, protected var clickListener: L) : RecyclerView.Adapter<VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.itemView.tag = list[position]

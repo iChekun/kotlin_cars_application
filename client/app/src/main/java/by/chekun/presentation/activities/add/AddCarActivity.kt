@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
@@ -17,6 +19,8 @@ import android.widget.*
 import by.chekun.R
 import by.chekun.di.component.ViewModelComponent
 import by.chekun.domain.AddCarViewModel
+import by.chekun.multispinner.MultiSpinnerSearch
+import by.chekun.multispinner.SingleSpinner
 import by.chekun.presentation.activities.main.MainActivity
 import by.chekun.presentation.base.BaseActivity
 import by.chekun.repository.database.entity.brand.ReleaseYearDto
@@ -24,11 +28,15 @@ import by.chekun.repository.database.entity.car.CarRequestDto
 import by.chekun.repository.database.entity.car.MileageDto
 import by.chekun.repository.database.entity.car.view.CarDto
 import by.chekun.utils.*
-import by.chekun.multispinner.MultiSpinnerSearch
-import by.chekun.multispinner.SingleSpinner
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.HashMap
@@ -335,20 +343,20 @@ class AddCarActivity : BaseActivity() {
             carRequestDto.description = descriptionEditText.text.toString()
 
 
-//        var byteArray: ByteArray? = null
-//        val carImage = findViewById<ImageView>(R.id.image_view)
-//        val mBitmap = (carImage.drawable as BitmapDrawable).bitmap
-//        val bos = ByteArrayOutputStream()
-//        mBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
-//        byteArray = bos.toByteArray()
-//        val filesDir: File = applicationContext.filesDir
-//        val file = File(filesDir, "image" + ".png")
-//        val fos = FileOutputStream(file)
-//        fos.write(byteArray)
-//        fos.flush()
-//        fos.close()
-//        val requestBody: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
-//        val multipartBody: MultipartBody.Part = MultipartBody.Part.createFormData("picture", file.name, requestBody)
+            var byteArray: ByteArray? = null
+            val carImage = findViewById<ImageView>(R.id.image_view)
+            val mBitmap = (carImage.drawable as BitmapDrawable).bitmap
+            val bos = ByteArrayOutputStream()
+            mBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            byteArray = bos.toByteArray()
+            val filesDir: File = applicationContext.filesDir
+            val file = File(filesDir, "image" + ".png")
+            val fos = FileOutputStream(file)
+            fos.write(byteArray)
+            fos.flush()
+            fos.close()
+            val requestBody: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
+            val multipartBody: MultipartBody.Part = MultipartBody.Part.createFormData("picture", file.name, requestBody)
 
 
             viewModel?.saveCar(carRequestDto)?.enqueue(object : Callback<CarDto> {
@@ -359,24 +367,24 @@ class AddCarActivity : BaseActivity() {
 
                     if (response.isSuccessful) {
 
-                        val carId = response.body()?.id?.toLong()
+                        val carId = response.body()?.id
 
                         showToast("CarDto added, new id = " + carId)
 
-                        showMainActivity()
-//                    val req: Call<CarDto>? = viewModel?.postImage(carId!!, multipartBody)
-//                    req?.enqueue(object : Callback<CarDto?> {
-//                        override fun onResponse(call: Call<CarDto?>, response: Response<CarDto?>) {
-//                            Toast.makeText(applicationContext, response.code().toString() + " ", Toast.LENGTH_SHORT).show()
-//
-//                            showMainActivity()
-//                        }
-//
-//                        override fun onFailure(call: Call<CarDto?>, t: Throwable) {
-//                            Toast.makeText(applicationContext, "Request failed", Toast.LENGTH_SHORT).show()
-//
-//                        }
-//                    })
+                      //  showMainActivity()
+                        val req: Call<CarDto>? = viewModel?.postImage(carId!!, multipartBody)
+                        req?.enqueue(object : Callback<CarDto?> {
+                            override fun onResponse(call: Call<CarDto?>, response: Response<CarDto?>) {
+                                Toast.makeText(applicationContext, response.code().toString() + " ", Toast.LENGTH_SHORT).show()
+
+                                showMainActivity()
+                            }
+
+                            override fun onFailure(call: Call<CarDto?>, t: Throwable) {
+                                Toast.makeText(applicationContext, "Request failed", Toast.LENGTH_SHORT).show()
+
+                            }
+                        })
 
                     } else {
                         showToast("Can`t create car! Fill fields according with pattern.")

@@ -26,12 +26,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/carItemImage"
                 android:layout_width="match_parent"
                 android:layout_height="191dp"
                 android:contentDescription="car picture"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bmw_m3_e46" />
+                android:scaleType="centerCrop" />
 
 
             <TextView

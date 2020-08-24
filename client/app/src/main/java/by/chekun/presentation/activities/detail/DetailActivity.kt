@@ -3,13 +3,18 @@ package by.chekun.presentation.activities.detail
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.LeadingMarginSpan
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import by.chekun.R
@@ -29,6 +34,7 @@ class DetailActivity : BaseActivity() {
     private lateinit var binding: CarDetailBinding
     private var carId: Long = 0
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.supportActionBar?.title = "Подробный просмотр"
@@ -37,16 +43,35 @@ class DetailActivity : BaseActivity() {
         initViewModel()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initViewModel() {
         carId = intent.getLongExtra(getString(R.string.EXTRAS_ID), 0)
         viewModel?.getItem(carId)
         viewModel?.getLiveDataItem()?.observe(this, Observer { it?.let { initDataBinding(it) } })
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initDataBinding(car: CarDto) {
         binding.car = car
         initActionBar("${car.model} ${car.generation}")
         initOrderedList(car)
+        initCarImage(car)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun initCarImage(car: CarDto) {
+        if (car.picture != null) {
+            val base64String = car.picture
+            // Receiving side
+
+            // Receiving side
+            val imageBytes: ByteArray = Base64.getDecoder().decode(base64String)
+            val bmp: Bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            val image: ImageView = findViewById<View>(R.id.detailCarImage) as ImageView
+
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.width,
+                    image.height, false))
+        }
     }
 
     private fun initOrderedList(car: CarDto) {

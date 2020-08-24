@@ -4,6 +4,8 @@ package by.chekun.presentation.activities.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,18 +31,21 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.supportActionBar?.title = "Каталог авто"
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel?.getAllItems()
         viewModel?.getLiveDataItems()?.observe(this, Observer { it?.let { initRecyclerView(it) } })
     }
 
     private fun initRecyclerView(cars: List<CarDto>) {
+
         val manager = LinearLayoutManager(this)
-        val userAdapter = CarAdapter(this, cars, itemClickListener)
-        userAdapter.setItemClickListener(itemClickListener)
+        val carAdapter = CarAdapter( this, cars, itemClickListener)
+        carAdapter.setItemClickListener(itemClickListener)
         rvUsers.layoutManager = manager
-        rvUsers.adapter = userAdapter
+        rvUsers.adapter = carAdapter
     }
+
 
     companion object {
         @JvmStatic
